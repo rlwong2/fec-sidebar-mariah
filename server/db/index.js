@@ -26,5 +26,6 @@ var Artist = db.define('Artist', {
   track_count: Sequelize.INTEGER,
   follower_count: Sequelize.INTEGER,
   following_count: Sequelize.INTEGER,
+  about: Sequelize.STRING,
   links: Sequelize.STRING
 })
