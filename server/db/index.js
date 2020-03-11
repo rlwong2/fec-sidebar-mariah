@@ -3,7 +3,7 @@ var Sequelize = require('sequelize');
 // Will put db name here at some point
 var dbName = '';
 var username = 'root';
-var password = ''
+var password = '';
 
 // Databse login info
 var db = new Sequelize(dbName, username, password, {
