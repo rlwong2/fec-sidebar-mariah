@@ -7,8 +7,7 @@ var password = '';
 
 // Databse login info
 var db = new Sequelize(dbName, username, password, {
-  dialect: "mysql",
-  port: 3000
+  dialect: 'mysql'
 });
 
 // Connect to database

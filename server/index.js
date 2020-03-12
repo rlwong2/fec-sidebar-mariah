@@ -29,9 +29,11 @@ app.get('/artist', function(req, res) {
 app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
   //
+  console.log(JSON.stringify(req.body))
   db.create(req.body)
     .then(function(artist) {
       console.log('New artist entry has been added to database');
+      res.send(artist);
       // Send a response that does something maybe.
     })
     .catch(function(err) {
