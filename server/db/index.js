@@ -29,3 +29,5 @@ var Artist = db.define('Artist', {
   about: Sequelize.STRING,
   links: Sequelize.STRING
 })
+
+module.exports = Artist;
