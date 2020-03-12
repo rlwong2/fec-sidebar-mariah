@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "build": "webpack --mode production --watch"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
