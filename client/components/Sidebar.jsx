@@ -56,11 +56,12 @@ class Sidebar extends React.Component {
             </tbody>
           </table>
 
+          <div id="about">
+            <About about={this.state.about}/>
+          </div>
+
         </article>
 {/*
-        <article id="about">
-          <About about={this.state.about}/>
-        </article>
 
         <article>
           <Links links={this.state.links}/>
