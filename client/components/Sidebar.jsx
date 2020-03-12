@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import axios from 'axios';
 import StatCounts from './StatCounts.jsx';
 import Links from './Links.jsx';
@@ -23,10 +24,12 @@ class Sidebar extends React.Component {
   componentWillMount() {
     // get req here
     var that = this;
+    var name = 'Dedrick.Hauck'
 
     axios.get(`/artist/?name=${name}`)
       .then(function(artist) {
-        that.setState(artist);
+        that.setState(artist.data);
+        console.log(JSON.stringify(artist.data));
       })
       .catch(function(err) {
         console.log(err);
@@ -38,21 +41,30 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <div id='sidebar-right' style="top: -401px;">
+      <div id='sidebar-right' style={{top: '401px'}}>
 
         <article id="stats">
-          <span ><StatCounts followers={this.state.follower_count}/></span>
-          <span ><StatCounts following={this.state.following_count}/></span>
-          <span ><StatCounts tracks={this.state.track_count}/></span>
-        </article>
+          <table id="links">
+            <tbody>
+              <tr>
 
+                <StatCounts statTitle='followers' statNum={this.state.follower_count} />
+                <StatCounts statTitle='following' statNum={this.state.following_count} />
+                <StatCounts statTitle='tracks' statNum={this.state.track_count} />
+              </tr>
+
+            </tbody>
+          </table>
+
+        </article>
+{/*
         <article id="about">
           <About about={this.state.about}/>
         </article>
 
-        <article id="links">
+        <article>
           <Links links={this.state.links}/>
-        </article>
+        </article> */}
       </div>
     );
   }
