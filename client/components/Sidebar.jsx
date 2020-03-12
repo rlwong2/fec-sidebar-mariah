@@ -1,5 +1,5 @@
 import React from 'react';
-
+import request from 'request';
 
 class Sidebar extends React.Component {
 
@@ -18,9 +18,13 @@ class Sidebar extends React.Component {
   // send get req before component renders.
   componentWillMount() {
     // get req here
-  }
-
-  // change state values upon finishing get req
+    that = this;
+    request
+      .get('/artist')
+      .on('response', function(artist) {
+        // add the values to the state
+        that.setState(artist, function() { console.log('State has been changed!')})
+      })
 
 
   // on click function to be added when I have time
