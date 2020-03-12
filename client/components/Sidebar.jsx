@@ -24,7 +24,7 @@ class Sidebar extends React.Component {
     // get req here
     that = this;
 
-    axios.get(`/?name=${name}`)
+    axios.get(`/artist/?name=${name}`)
       .then(function(artist) {
         that.setState(artist);
       })

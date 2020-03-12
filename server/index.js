@@ -15,11 +15,10 @@ app.use(bodyParser());
 
 // GET/POST req here
 app.get('/artist', function(req, res) {
-  console.log(req.body.id);
+  console.log(req.query.name);
   db.findOne({
     where: {
-      'id': req.body.id,
-      'name': req.body.name
+      'name': req.query.name
     }})
     .then(function(artist) {
       // send back the artist info
