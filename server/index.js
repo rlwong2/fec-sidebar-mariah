@@ -38,6 +38,7 @@ app.post('/artist', function(req, res) {
     })
     .catch(function(err) {
       console.log('An error occurred trying to add new artist to the database')
+      console.log(err);
     });
 
 })

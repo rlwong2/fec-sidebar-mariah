@@ -20,13 +20,16 @@ db
   });
 
 // Defining a model. Id, createdAt and updateAt auto added.
-var Artist = db.define('Artist', {
+var Artist = db.define('artist', {
   name: Sequelize.STRING,
   track_count: Sequelize.INTEGER,
   follower_count: Sequelize.INTEGER,
   following_count: Sequelize.INTEGER,
   about: Sequelize.STRING,
   links: Sequelize.STRING
+}, {
+  freezeTableName: true,
+  timestamps: false
 })
 
 module.exports = Artist;
