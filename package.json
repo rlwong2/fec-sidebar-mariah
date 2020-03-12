@@ -1,5 +1,5 @@
 {
-  "name": "FEC-side-bar",
+  "name": "fec-side-bar",
   "version": "",
   "description": "",
   "author": "",
@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "server": "nodemon server/index.js",
+    "start": "nodemon server/index.js",
     "build": "webpack --mode production --watch"
   },
   "dependencies": {
@@ -21,19 +21,20 @@
     "request": "^2.81.0",
     "mysql": "2.18.1",
     "mysql2": "2.1.0",
-    "axios": "0.19.2",
     "bluebird": "3.7.2",
     "dotenv": "8.2.0",
-    "nodemon": "2.0.2"
+    "nodemon": "2.0.2",
+    "axios": "0.19.2"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
-    "webpack": "4.42.0",
-    "webpack-cli": "3.3.11",
     "@babel/core": "7.8.7",
     "@babel/preset-env": "7.8.7",
     "@babel/preset-react": "^7.8.3",
+    "axios": "^0.19.2",
     "babel-loader": "8.0.6",
-    "faker": "4.1.0"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "faker": "4.1.0",
+    "webpack": "4.42.0",
+    "webpack-cli": "3.3.11"
   }
 }
