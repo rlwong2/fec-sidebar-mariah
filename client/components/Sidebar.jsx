@@ -1,5 +1,5 @@
 import React from 'react';
-//import request from 'request';
+import axios from 'axios';
 import StatCounts from './StatCounts.jsx';
 import Links from './Links.jsx';
 import About from './About.jsx';
@@ -13,9 +13,9 @@ class Sidebar extends React.Component {
     this.state = {
       links: '',
       about: '',
-      followers: null,
-      following: null,
-      tracks: null,
+      follower_count: null,
+      following_count: null,
+      track_count: null,
     };
   }
 
@@ -24,15 +24,13 @@ class Sidebar extends React.Component {
     // get req here
     that = this;
 
-    // request
-    //   // If continuing to use request then url is going to be the parameter.
-    //   .get('/artist')
-    //   .on('response', function(artist) {
-    //     // add the values to the state
-    //     that.setState(artist, function() {
-    //       console.log('State has been changed!');
-    //     });
-    //   });
+    axios.get(`/?name=${name}`)
+      .then(function(artist) {
+        that.setState(artist);
+      })
+      .throw(function(err) {
+        console.log(err);
+      });
   }
 
   // on click function to be added when I have time
