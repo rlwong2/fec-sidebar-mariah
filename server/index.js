@@ -15,7 +15,7 @@ app.use(bodyParser())
 
 // GET/POST req here
 app.get('/artist', function(req, res) {
-  db.findOne({id: req.body.id});
+  db.findOne({id: req.body.id})
     .then(function(artist) {
       // send back the artist info
       res.send(artist);
