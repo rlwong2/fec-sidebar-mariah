@@ -22,13 +22,13 @@ class Sidebar extends React.Component {
   // send get req before component renders.
   componentWillMount() {
     // get req here
-    that = this;
+    var that = this;
 
     axios.get(`/artist/?name=${name}`)
       .then(function(artist) {
         that.setState(artist);
       })
-      .throw(function(err) {
+      .catch(function(err) {
         console.log(err);
       });
   }
@@ -41,17 +41,17 @@ class Sidebar extends React.Component {
       <div id='sidebar-right' style="top: -401px;">
 
         <article id="stats">
-          <span ><StatCounts followers={followers}/></span>
-          <span ><StatCounts following={following}/></span>
-          <span ><StatCounts tracks={tracks}/></span>
+          <span ><StatCounts followers={this.state.follower_count}/></span>
+          <span ><StatCounts following={this.state.following_count}/></span>
+          <span ><StatCounts tracks={this.state.track_count}/></span>
         </article>
 
         <article id="about">
-          <About about={about}/>
+          <About about={this.state.about}/>
         </article>
 
         <article id="links">
-          <Links links={links}/>
+          <Links links={this.state.links}/>
         </article>
       </div>
     );

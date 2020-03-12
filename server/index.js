@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+
+var path = require('path');
 var PORT = 3333;
 // import artist model methods
 var db = require('./db/index.js');
@@ -10,8 +12,8 @@ var bodyParser = require('body-parser');
 
 
 // Middleware functionality goes here
+app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser());
-
 
 // GET/POST req here
 app.get('/artist', function(req, res) {
