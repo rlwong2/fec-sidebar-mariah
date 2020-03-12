@@ -1,5 +1,5 @@
 {
-  "name": "FEC-side-bar",
+  "name": "fec-side-bar",
   "version": "",
   "description": "",
   "author": "",
@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "server": "nodemon server/index.js",
+    "start": "nodemon server/index.js",
     "build": "webpack --mode production --watch"
   },
   "dependencies": {
