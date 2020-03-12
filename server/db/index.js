@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
-// Will put db name here at some point
-var dbName = '';
+// Will put db name here at some point. Spudiferous is my test db
+var dbName = 'spudiferous';
 var username = 'root';
 var password = '';
 
@@ -29,3 +29,5 @@ var Artist = db.define('Artist', {
   about: Sequelize.STRING,
   links: Sequelize.STRING
 })
+
+module.exports = Artist;
