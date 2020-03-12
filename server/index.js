@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 
 // Middleware functionality goes here
-app.use(bodyParser())
+app.use(bodyParser());
 
 
 // GET/POST req here
@@ -21,15 +21,15 @@ app.get('/artist', function(req, res) {
       res.send(artist);
     })
     .catch(function(err) {
-      console.log('Could not find artist in database')
-    })
+      console.log('Could not find artist in database');
+    });
 });
 
 // Adds new artist to the db, going to use to fill up db.
 app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
   //
-  console.log(JSON.stringify(req.body))
+  console.log(JSON.stringify(req.body));
   db.create(req.body)
     .then(function(artist) {
       console.log('New artist entry has been added to database');
@@ -37,15 +37,15 @@ app.post('/artist', function(req, res) {
       // Send a response that does something maybe.
     })
     .catch(function(err) {
-      console.log('An error occurred trying to add new artist to the database')
+      console.log('An error occurred trying to add new artist to the database');
       console.log(err);
     });
 
-})
+});
 
 
 
 // listen for reqs
 app.listen(PORT, () => {
   console.log(`Server listening in on port ${PORT}`);
-})
+});
