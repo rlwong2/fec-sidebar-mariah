@@ -34,10 +34,8 @@ var makeLikedSong = function (username, fakeArtistName, fakeSongName, fakeLocati
     })
     .catch(function (err) {
       console.log('there was an error trying to add a new song to likedsongs  table');
-    })
+    });
 };
-
-
 
 module.exports.generateFakeSongs = function(username) {
 
@@ -64,15 +62,12 @@ module.exports.generateFakeSongs = function(username) {
       var max = fakeArt.profile.length;
       var num = Math.floor(Math.random() * 16);
       var fakePic = fakeArt.profile[num];
-      var fakeAlbum = fakeArt.album[num]
+      var fakeAlbum = fakeArt.album[num];
 
       // Run the function that makes the song
       return makeLikedSong(username, fakeArtistName, response2.data[0], fakeLocation, fakeAlbum, fakePic);
     })
     .catch(function (err) {
       console.log('there was an error trying to add a new song to likedsongs table');
-    })
-
-
-
+    });
 };
