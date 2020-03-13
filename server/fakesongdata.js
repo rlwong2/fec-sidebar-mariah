@@ -17,25 +17,28 @@ var generateRandomLikeData = function (num, username, fakeArtistName, fakeSongNa
   console.log('fakePlays: ' + fakePlays)
   var fakeLikes = Math.ceil(num / (50 * (Math.random() * 1.5)));
   console.log('fakeLikes: ' + fakeLikes)
-  var fakeReposts = Math.ceil(num / (10 * (Math.random() * 3)));
+  var fakeReposts = Math.ceil(num / (500 * (Math.random() * 3)));
   console.log('fakeReposts: ' + fakeReposts)
-  var fakeComments = Math.ceil(num / ((Math.random() * 5) + .5));
+  var fakeComments = Math.ceil(fakeReposts / ((Math.random() * 5) + .5));
 
+  // Create fake object with fake data to create add to table.
+  console.log('sup')
 
-  var fake = {};
-  // Add fake data to fakeInfo object
-  fake.user = fakeUser;
-  fake.song_name = fakeSongName;
-  fake.artist_name = fakeArtistName;
-  fake.plays = fakePlays;
-  fake.likes = fakeLikes;
-  fake.reposts = fakeReposts;
-  fake.comments = fakeComments;
-  fake.album_art = "https://fec-sidebar-album-art.s3.amazonaws.com/abba/61fCRGMOASL._SY355_.jpg";
+  console.log('hey')
+  //console.log(JSON.stringify(fake));
 
   console.log('line 66 ' + JSON.stringify(fake));
   // make db call to create
-  db.UserLikes.create(fake)
+  db.UserLikes.create({
+    user: username,
+    song_name: fakeSongName,
+    artist_name: fakeArtistName,
+    plays: fakePlays,
+    likes: fakeLikes,
+    reposts: fakeReposts,
+    comments: fakeComments,
+    album_art: 'https://fec-sidebar-album-art.s3.amazonaws.com/abba/61fCRGMOASL._SY355_.jpg'
+  })
     .then(function (song) {
       console.log(JSON.stringify(song))
       console.log('New song like has been added! ')
@@ -83,7 +86,7 @@ module.exports.generateFakeSongs = function(username) {
     })
     .catch((err) => {
       console.log('There was an error with getting random data from drycodes');
-      console.log('error: ' + err.body)
+      console.log('error: ' + err.body);
     });
 
 
