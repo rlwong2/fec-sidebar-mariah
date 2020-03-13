@@ -2,10 +2,12 @@ var request = require('request');
 var faker = require('faker');
 //var bodyParser = require('body-parser');
 var db = require('./db/index.js');
+// import fakesongdata
+var generateFakeSongs = require('./fakesongdata.js');
 
 
-module.exports.createFakeArtist = function() {
-
+module.exports.createFakeArtist = function(callback) {
+// const createFakeArtist = function() {
 
   // Create random data object and values
   var fakeInfo = {about: ''};
@@ -43,7 +45,7 @@ module.exports.createFakeArtist = function() {
     var parameter = 'paras';
   }
 
-  // Create fake about object
+  // Create fake 'about' object
   request
     .get(`https://hipsum.co/api/?type=hipster-centric&${parameter}=${num}`, function(err, response, body) {
       if (err) {
@@ -53,18 +55,15 @@ module.exports.createFakeArtist = function() {
       // body will be an array, turn to string
         fakeInfo.about = body;
         // add this data to tables
-        db.create(fakeInfo)
+        db.Artist.create(fakeInfo)
           .then(function (artist) {
-            console.log('New artist entry has been added to database');
-            //\console.log(artist);
-
-            // we run the fakesongLikes function
-
+            callback(artist.name);
           })
           .catch(function (err) {
             console.log('An error occurred trying to add new artist to the database');
-          //console.log(err);
           });
-      }
-    });
+
+    }});
 };
+
+// createFakeArtist();
