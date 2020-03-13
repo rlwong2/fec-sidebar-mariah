@@ -10,12 +10,14 @@ create table likedsongs (
   reposts int,
   comments int,
   album_art text,
+  location text,
+  artist_pic text,
   primary key (id)
 );
 
 
 
-create table likedsongs (
+create table artist (
   id int not null auto_increment,
   name varchar(25) not null,
   track_count varchar(40) not null,
