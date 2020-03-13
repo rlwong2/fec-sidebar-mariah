@@ -4,7 +4,7 @@ var faker = require('faker');
 var db = require('./db/index.js');
 
 
-const createFakeArtist = function() {
+module.exports.createFakeArtist = function() {
 
 
   // Create random data object and values
@@ -65,7 +65,6 @@ const createFakeArtist = function() {
             console.log('An error occurred trying to add new artist to the database');
           //console.log(err);
           });
-
+      }
+    });
 };
-
-module.exports = createFakeArtist()
