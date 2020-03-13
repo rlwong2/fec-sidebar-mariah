@@ -61,7 +61,7 @@ var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumAr
   fake.likes = fakeLikes;
   fake.reposts = fakeReposts;
   fake.comments = fakeComments;
-  fake.album_art = fakeAlbumArt;
+  fake.album_art = "https://fec-sidebar-album-art.s3.amazonaws.com/abba/61fCRGMOASL._SY355_.jpg"
 
   // make db call to create
   db.UserLikes.create(fake)
