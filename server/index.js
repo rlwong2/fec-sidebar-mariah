@@ -17,21 +17,21 @@ app.use(bodyParser());
 
 // GET/POST req here
 app.get('/artist', function(req, res) {
-  console.log(req.query.name);
+  console.log('hey' + req.query.name);
   db.Artist.findOne({
     where: {
       'name': req.query.name
     }})
     .then(function(artist) {
-      // send back the artist info
-      db.UserLikes.findAll({name: artist.name})
-        .then(function(userLikes) {
-          res.send(artist, userLikes);
-        })
-        .catch(function(err) {
-          console.log('There was an error trying to find artist likes');
-        });
-      //res.send(artist);  <== uncomment this if removing the artistLikes search.
+      // // send back the artist info
+      // db.UserLikes.findAll({name: artist.name})
+      //   .then(function(userLikes) {
+      //     res.send(artist, userLikes);
+      //   })
+      //   .catch(function(err) {
+      //     console.log('There was an error trying to find artist likes');
+      //   });
+      res.send(artist);  //<== uncomment this if removing the artistLikes search.
     })
     .catch(function(err) {
       console.log('Could not find artist in database');
