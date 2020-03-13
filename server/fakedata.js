@@ -45,7 +45,7 @@ module.exports.createFakeArtist = function(callback) {
     var parameter = 'paras';
   }
 
-  // Create fake about object
+  // Create fake 'about' object
   request
     .get(`https://hipsum.co/api/?type=hipster-centric&${parameter}=${num}`, function(err, response, body) {
       if (err) {
@@ -57,14 +57,10 @@ module.exports.createFakeArtist = function(callback) {
         // add this data to tables
         db.Artist.create(fakeInfo)
           .then(function (artist) {
-            console.log('New artist entry has been added to database');
-            console.log('line 61: ' + artist.name)
             callback(artist.name);
-            //\console.log(artist);
           })
           .catch(function (err) {
             console.log('An error occurred trying to add new artist to the database');
-          //console.log(err);
           });
 
     }});
