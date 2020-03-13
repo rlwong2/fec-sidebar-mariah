@@ -51,9 +51,9 @@ module.exports.createFakeArtist = function(callback) {
         linkArr.push(newLink)
         numLinks --;
       }
-
+      // Join array of fake links into one string separated by a space.
       var fakeLinks = linkArr.join(' ');
-      console.log('$KJFAL' + fakeLinks + Array.isArray(fakeLinks));
+
       /////// Generate rest of fake data ///////////
       var trackCount = Math.ceil(Math.random() * 200);
       var followerCount = Math.floor(Math.random() * 20000);
