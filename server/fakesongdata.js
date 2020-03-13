@@ -13,13 +13,13 @@ var generateRandomLikeData = function (num, username, fakeArtistName, fakeSongNa
   // var fakeSongName = fakeSongName;
   // var fakeArtistName = fakeArtistName;
 
-  var fakePlays = num
+  var fakePlays = num;
   console.log('fakePlays: ' + fakePlays)
-  var fakeLikes = num / (50 * (Math.ceil(Math.random * 1.5)));
+  var fakeLikes = Math.ceil(num / (50 * (Math.random() * 1.5)));
   console.log('fakeLikes: ' + fakeLikes)
-  var fakeReposts = num / (10 * (Math.ceil(Math.random * 3)));
+  var fakeReposts = Math.ceil(num / (10 * (Math.random() * 3)));
   console.log('fakeReposts: ' + fakeReposts)
-  var fakeComments = num / ((Math.random() * 5) + .5)
+  var fakeComments = Math.ceil(num / ((Math.random() * 5) + .5));
 
 
   var fake = {};
