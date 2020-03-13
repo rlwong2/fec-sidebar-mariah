@@ -12,8 +12,8 @@ class Sidebar extends React.Component {
     super(props);
 
     this.state = {
-      links: '',
-      about: '',
+      links: [],
+      about: [],
       follower_count: null,
       following_count: null,
       track_count: null,
@@ -24,19 +24,23 @@ class Sidebar extends React.Component {
   componentWillMount() {
     // get req here
     var that = this;
-    var name = 'Dedrick.Hauck'
+    var name = 'Dedrick.Hauck';
 
     axios.get(`/artist/?name=${name}`)
       .then(function(artist) {
+        //convert paragraph into array of strings
+        var length = artist.data.about.length-1;
+        artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
+        artist.data.links = artist.data.links.split(' ');
         that.setState(artist.data);
-        console.log(JSON.stringify(artist.data));
+        //console.log(JSON.stringify(artist.data));
       })
       .catch(function(err) {
         console.log(err);
       });
   }
 
-  // on click function to be added when I have time
+
 
 
   render() {
@@ -60,12 +64,14 @@ class Sidebar extends React.Component {
             <About about={this.state.about}/>
           </div>
 
+          <div id="weblinks">
+            <Links
+              links={this.state.links}
+            />
+          </div>
         </article>
-{/*
 
-        <article>
-          <Links links={this.state.links}/>
-        </article> */}
+
       </div>
     );
   }
