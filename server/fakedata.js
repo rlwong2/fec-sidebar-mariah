@@ -2,10 +2,12 @@ var request = require('request');
 var faker = require('faker');
 //var bodyParser = require('body-parser');
 var db = require('./db/index.js');
+// import fakesongdata
+var generateFakeSongs = require('./fakesongdata.js');
 
 
-module.exports.createFakeArtist = function() {
-
+// module.exports.createFakeArtist = function() {
+const createFakeArtist = function() {
 
   // Create random data object and values
   var fakeInfo = {about: ''};
@@ -59,6 +61,7 @@ module.exports.createFakeArtist = function() {
             //\console.log(artist);
 
             // we run the fakesongLikes function
+            generateFakeSongs(artist.name);
 
           })
           .catch(function (err) {
@@ -68,3 +71,5 @@ module.exports.createFakeArtist = function() {
       }
     });
 };
+
+createFakeArtist();

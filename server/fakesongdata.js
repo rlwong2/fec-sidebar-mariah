@@ -23,9 +23,9 @@ const generateAPIinfo = function(username, callback) {
     axios.get(`http://names.drycodes.com/1?separator=space`)
     .then(function (response) {
       var fakeSongName = response[0]
-
+      console.log('line 26 ' + fakeSongName)
       // run the rest of the random info generator
-      generateRandomLikeData(fakeArtistName, fakeSongName, fakeAlbumArt, callback);
+      generateRandomLikeData(username, fakeArtistName, fakeSongName, fakeAlbumArt, callback);
     })
     .catch(function (error) {
       console.log('There was an error retrieving your fake song name ')
@@ -42,7 +42,7 @@ const generateAPIinfo = function(username, callback) {
 };
 
 // Generate rrest of fake data
-var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumArt, callback) {
+var generateRandomLikeData = function (username, fakeArtistName, fakeSongName, fakeAlbumArt, callback) {
   var fake = {};
   var fakeUser = username;
   var fakeSongName = fakeSongName;
@@ -50,7 +50,7 @@ var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumAr
   var fakePlays = Math.ceil(Math.random() * 90000000);
   var fakeLikes = fakeLikes / (50 * (Math.ceil(Math.random * 1.5)));
   var fakeReposts = fakeReposts / (10 * (Math.ceil(Math.random * 3)));
-  var fakeComments = fakeReposts / (Math.random() * 5) + .5
+  var fakeComments = fakeReposts / ((Math.random() * 5) + .5)
   var fakeAlbumArt = fakeAlbumArt;
 
   // Add fake data to fakeInfo object
@@ -63,6 +63,7 @@ var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumAr
   fake.comments = fakeComments;
   fake.album_art = "https://fec-sidebar-album-art.s3.amazonaws.com/abba/61fCRGMOASL._SY355_.jpg"
 
+  console.log('line 66 ' + JSON.stringify(fake));
   // make db call to create
   db.UserLikes.create(fake)
     .then(function(song) {
@@ -70,7 +71,7 @@ var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumAr
       callback()
     })
     .catch(function(err) {
-      console.log('there was an error trying to add a new song to userlike's table');
+      console.log('there was an error trying to add a new song to userlike\'s table');
     })
 };
 
@@ -81,7 +82,7 @@ var generateRandomLikeData = function (fakeArtistName, fakeSongName, fakeAlbumAr
 
 
 
-const startGenerateRandomSongLikes = function(username) {
+module.exports.generateFakeSongs = function(username) {
 
   var i = Math.floor(Math.random() * 20)
 
@@ -90,12 +91,12 @@ const startGenerateRandomSongLikes = function(username) {
     generateAPIinfo(username, function(err, success) {
       if (err) {
         console.log('error')
+        i = 0;
       } else {
+        console.log('value i line 96 ' + i)
         return i --;
 
       }
     })
   }
 }
-
-module.exports = startGenerateRandomSongLikes;
