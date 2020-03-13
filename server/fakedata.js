@@ -6,8 +6,8 @@ var db = require('./db/index.js');
 var generateFakeSongs = require('./fakesongdata.js');
 
 
-// module.exports.createFakeArtist = function() {
-const createFakeArtist = function() {
+module.exports.createFakeArtist = function(callback) {
+// const createFakeArtist = function() {
 
   // Create random data object and values
   var fakeInfo = {about: ''};
@@ -55,21 +55,19 @@ const createFakeArtist = function() {
       // body will be an array, turn to string
         fakeInfo.about = body;
         // add this data to tables
-        db.create(fakeInfo)
+        db.Artist.create(fakeInfo)
           .then(function (artist) {
             console.log('New artist entry has been added to database');
+            console.log('line 61: ' + artist.name)
+            callback(artist.name);
             //\console.log(artist);
-
-            // we run the fakesongLikes function
-            generateFakeSongs(artist.name);
-
           })
           .catch(function (err) {
             console.log('An error occurred trying to add new artist to the database');
           //console.log(err);
           });
-      }
-    });
+
+    }});
 };
 
-createFakeArtist();
+// createFakeArtist();

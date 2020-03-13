@@ -48,5 +48,5 @@ var UserLikes = db.define('userlikes', {
   timestamps: false
 });
 
-module.exports = Artist;
-module.exports = UserLikes;
+module.exports.Artist = Artist;
+module.exports.UserLikes = UserLikes;
