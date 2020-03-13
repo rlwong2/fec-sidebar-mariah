@@ -18,13 +18,20 @@ app.use(bodyParser());
 // GET/POST req here
 app.get('/artist', function(req, res) {
   console.log(req.query.name);
-  db.findOne({
+  db.Artist.findOne({
     where: {
       'name': req.query.name
     }})
     .then(function(artist) {
       // send back the artist info
-      res.send(artist);
+      db.UserLikes.findAll({name: artist.name})
+        .then(function(userLikes) {
+          res.send(artist, userLikes);
+        })
+        .catch(function(err) {
+          console.log('There was an error trying to find artist likes');
+        });
+      //res.send(artist);  <== uncomment this if removing the artistLikes search.
     })
     .catch(function(err) {
       console.log('Could not find artist in database');
@@ -36,7 +43,7 @@ app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
   //
   console.log(JSON.stringify(req.body));
-  db.create(req.body)
+  db.Artist.create(req.body)
     .then(function(artist) {
       console.log('New artist entry has been added to database');
       res.send(artist);
@@ -49,6 +56,18 @@ app.post('/artist', function(req, res) {
 
 });
 
+// Add Song info
+app.post('/user/likes', function(req, res) {
+  console.log(JSON.stringify(req.body));
+  db.UserLikes.create(req.body)
+    .then(function(userLikes) {
+
+    })
+    .catch(function(err) {
+      console.log('An error has occured trying to add new song info');
+      console.log(err);
+    });
+});
 
 
 // listen for reqs

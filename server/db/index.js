@@ -34,8 +34,8 @@ var Artist = db.define('artist', {
 
 // Create ArtistLikes table
 
-var ArtistLikes = db.define('artistlikes', {
-  name: Sequelize.STRING,
+var UserLikes = db.define('userlikes', {
+  user: Sequelize.STRING,
   song_name: Sequelize.STRING,
   artist_name: Sequelize.STRING,
   plays: Sequelize.INTEGER,
@@ -49,4 +49,4 @@ var ArtistLikes = db.define('artistlikes', {
 });
 
 module.exports = Artist;
-module.exports = ArtistLikes;
+module.exports = UserLikes;
