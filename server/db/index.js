@@ -32,4 +32,21 @@ var Artist = db.define('artist', {
   timestamps: false
 });
 
+// Create ArtistLikes table
+
+var ArtistLikes = db.define('artistlikes', {
+  name: Sequelize.STRING,
+  song_name: Sequelize.STRING,
+  artist_name: Sequelize.STRING,
+  plays: Sequelize.INTEGER,
+  likes: Sequelize.INTEGER,
+  reposts: Sequelize.INTEGER,
+  comments: Sequelize.INTEGER,
+  album_art: Sequelize.STRING
+}, {
+  freezeTableName: true,
+  timestamps: false
+});
+
 module.exports = Artist;
+module.exports = ArtistLikes;
