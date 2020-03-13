@@ -56,7 +56,7 @@ module.exports.createFakeArtist = function() {
         db.create(fakeInfo)
           .then(function (artist) {
             console.log('New artist entry has been added to database');
-            //console.log(artist);
+            //\console.log(artist);
 
             // we run the fakesongLikes function
 
