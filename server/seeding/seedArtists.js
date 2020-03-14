@@ -2,7 +2,7 @@
 var faker = require('faker');
 var axios = require('axios');
 //var bodyParser = require('body-parser');
-var db = require('./db/index.js');
+var db = require('../db/index.js');
 // import fakesongdata
 //var generateFakeSongs = require('./fakeLikedSong.js');
 

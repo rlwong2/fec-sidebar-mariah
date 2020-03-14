@@ -2,7 +2,7 @@ var faker = require('faker');
 var axios = require('axios');
 var Sequelize = require('sequelize');
 
-var db = require('./db/index.js');
+var db = require('../db/index.js');
 
 
 var seedSongs = require('./seedSongs.js');
