@@ -7,7 +7,7 @@ var db = require('./db/index.js');
 //var generateFakeSongs = require('./fakeLikedSong.js');
 
 
-module.exports.createFakeArtist = function(callback) {
+module.exports.createFakeArtist = function() {
 
   var fakeArtistName;
 
@@ -70,7 +70,11 @@ module.exports.createFakeArtist = function(callback) {
       });
     })
     .then(function (artist) {
-      callback(artist.name);
+      // if (callback) {
+      //   callback(artist.name);
+      // }
+      console.log('Success seeding artist data');
+      return artist.name;
     })
     .catch(function (err) {
       console.log('An error occurred trying to add new artist to the database');
