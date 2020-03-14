@@ -1,22 +1,23 @@
 var faker = require('faker');
 var axios = require('axios');
-
+var Sequelize = require('sequelize');
 var db = require('./db/index.js');
+
+var fakeArt = require('./fakeAlbumProfileArt.js');
 
 
 
 // Generate rrest of fake data
-var generateRandomLikeData = function (username, fakeArtistName, fakeSongName) {
-  console.log('All variables: ' + username, fakeArtistName, fakeSongName)
-
-  // Generate random numbers
-  var fakePlays = Math.ceil(Math.random() * 90000000);;
+var makeLikedSong = function (username, fakeArtistName, fakeSongName, fakeLocation, fakeAlbum, fakePic) {
+  // works
+  /////// GENERATE RANDOM NUMBERSSS
+  var fakePlays = Math.ceil(Math.random() * 90000000);
   var fakeLikes = Math.ceil(fakePlays / (50 * (Math.random() * 1.5)));
   var fakeReposts = Math.ceil(fakeLikes / (20 * (Math.random() * 3)));
   var fakeComments = Math.ceil(fakeReposts / ((Math.random() * 5 + .5)));
 
-  // make db call to create data row in likedsongs table
-  db.UserLikes.create({
+  // Create new liked song in database
+  db.SongLike.create({
     user: username,
     song_name: fakeSongName,
     artist_name: fakeArtistName,
@@ -24,40 +25,49 @@ var generateRandomLikeData = function (username, fakeArtistName, fakeSongName) {
     likes: fakeLikes,
     reposts: fakeReposts,
     comments: fakeComments,
-    album_art: 'https://fec-sidebar-album-art.s3.amazonaws.com/abba/61fCRGMOASL._SY355_.jpg'
+    album_art: fakeAlbum,
+    location: fakeLocation,
+    artist_pic: fakePic
   })
     .then(function (song) {
-      console.log(JSON.stringify(song))
       console.log('New song like has been added! ');
     })
     .catch(function (err) {
-      console.log('there was an error trying to add a new song to userlike\'s table');
-    })
+      console.log('there was an error trying to add a new song to likedsongs  table');
+    });
 };
-
-
 
 module.exports.generateFakeSongs = function(username) {
 
-  // generate random artist name
-  axios.get(`http://names.drycodes.com/1?nameOptions=funnyWords`)
+  var fakeArtistName;
+
+  // get random artist name from database
+  db.Artist.findOne({ order: Sequelize.literal('rand()') })
     .then((response) => {
-      var name = response.data;
-      var num = Math.ceil(Math.random() * 2);
-      var temp = name[0].split('_');
-      if (num === 1) {
-        fakeArtistName = temp[0];
-      } else {
-        fakeArtistName = temp.join(' ');
-      }
+
+      fakeArtistName = response.dataValues.name;
+
       // Run API get req to get song name
-      return axios.get(`http://names.drycodes.com/1?separator=space`);
+      return axios.get('http://names.drycodes.com/1?separator=space');
     })
     .then((response2) => {
-      return generateRandomLikeData(username, fakeArtistName, response2.data[0]);
+
+      //////// Generate random Location
+      var city = faker.address.city();
+      var country = faker.address.country();
+      var fakeLocation = city + ', ' + country;
+
+      //////// Generate profile picture
+      // generate random index number to choose random profile art link
+      var max = fakeArt.profile.length;
+      var num = Math.floor(Math.random() * 16);
+      var fakePic = fakeArt.profile[num];
+      var fakeAlbum = fakeArt.album[num];
+
+      // Run the function that makes the song
+      return makeLikedSong(username, fakeArtistName, response2.data[0], fakeLocation, fakeAlbum, fakePic);
     })
-    .catch((err) => {
-      console.log('There was an error with getting random data from drycodes');
-      console.log('error: ' + err.body);
+    .catch(function (err) {
+      console.log('there was an error trying to add a new song to likedsongs table');
     });
 };
