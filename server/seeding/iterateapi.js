@@ -14,12 +14,12 @@ module.exports.createArtist = function(artistNames, songNames, about) {
     db.Artist.create({
 
     })
-    .then(function(artist) {
-      console.log('Artist has been added to the db')
-    })
-    .throw(function(artist) {
-      console.log('Error adding artist to db. ')
-    })
+      .then(function(artist) {
+        console.log('Artist has been added to the db')
+      })
+      .throw(function(artist) {
+        console.log('Error adding artist to db. ')
+      })
   }
 
 };
