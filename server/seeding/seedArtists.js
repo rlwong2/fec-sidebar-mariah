@@ -1,13 +1,15 @@
 //var request = require('request');
 var faker = require('faker');
-var axios = require('axios');
-//var bodyParser = require('body-parser');
+
 var db = require('../db/index.js');
 // import fakesongdata
+var fakeData = require('./fakeData.js');
 //var generateFakeSongs = require('./fakeLikedSong.js');
 
 
 module.exports.createFakeArtist = function() {
+
+
 
   var fakeArtistName;
 
@@ -60,7 +62,7 @@ module.exports.createFakeArtist = function() {
       var followingCount = Math.floor(Math.random() * 1000);
 
       // Add the rando, generated info into the database.
-      return db.Artist.create({
+       db.Artist.create({
         name: fakeArtistName,
         track_count: trackCount,
         follower_count: followerCount,

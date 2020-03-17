@@ -1,41 +1,41 @@
 var faker = require('faker');
-var axios = require('axios');
 var Sequelize = require('sequelize');
 
 var db = require('../db/index.js');
 
 
-var seedSongs = require('./seedSongs.js');
-var seedArtists = require('./seedArtists.js')
+var seedSong = require('./seedSong.js');
+var seedArtist = require('./seedArtist.js')
 
 
-
-
-// Randomly generate how many songs user will have liked
-var randomSongCount = function() {
-  var num = Math.ceil(Math.random() * 50);
-  return num;
-};
-
-
-
-// create a fake artist first
-var username = seedArtists.createFakeArtist(function(username) {
-  // add a callback if desired
-});
 
 // Create 100 artists
+for (var j = 0; j < 100; j ++) {
 
-module.exports = function() {
-  console.log('saf')
-  var usernames = [];
-  for (var i = 0; i < 10; i ++) {
-    usernames.push(seedArtists.createFakeArtist())
-  }
+  // create a fake artist first
+  var username = seedArtist.createArtist(j, function(fakeArtist) {
+    console.log('username :' + username)
 
-  console.log(usernames)
+    // Randomly generate how many songs user will have liked
+    var randomSongCount = Math.ceil(Math.random() * 50);
+
+    // generate songs
+    for (var k = 0; k < randomSongCount; k ++ ) {
+      var songName = seedSongs.generateSong(username);
+      console.log('Song just created: ' + song.song_name + ' //// ' + song.user);
+      console.log('index: ' + k);
+    }
+
+  });
+  console.log('line 30: should be after song names: ' + username)
+  // module.exports = function() {
+  //   console.log('saf')
+  //   var usernames = [];
+  //   for (var i = 0; i < 10; i ++) {
+  //     usernames.push(seedArtists.createFakeArtist())
+  //   }
+
+  //   console.log(usernames)
+  // }
+
 }
-// create fake likedsongs n times
-// var nSongs = function() {
-//   while
-// };
