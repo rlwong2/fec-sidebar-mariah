@@ -23,16 +23,16 @@ app.get('/artist', function(req, res) {
       'name': req.query.name
     }})
     .then(function(artist) {
-      // // send back the artist info
-      // db.UserLikes.findAll({name: artist.name})
-      //   .then(function(userLikes) {
-      //     res.send(artist, userLikes);
-      //   })
-      //   .catch(function(err) {
-      //     console.log('There was an error trying to find artist likes');
-      //   });
-      res.send(artist);  //<== uncomment this if removing the artistLikes search.
+
+      // res.send(artist);  //<== uncomment this if removing the artistLikes search.
+      return db.SongLike.findAll({
+        user: artist.name
+      });
     })
+    .then(function(likedsongs) {
+      res.send(likedSongs);
+    })
+
     .catch(function(err) {
       console.log('Could not find artist in database');
     });
