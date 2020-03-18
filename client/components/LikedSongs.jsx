@@ -2,6 +2,8 @@ import React from 'react';
 import LikedSong from './LikedSong.jsx';
 
 
+
+
 const LikedSongs = ({likedSongs}) => (
 
   <div>
@@ -13,8 +15,22 @@ const LikedSongs = ({likedSongs}) => (
     </span>
 
     <ul>
-      <LikedSong
-      />
+      {likedSongs.map((likedSong) =>
+        <LikedSong
+          likedSong={likedSong}
+          id={likedSong.id}
+          user={likedSong.user}
+          song_name={likedSong.song_name}
+          artist_name={likedSong.artist_name}
+          plays={likedSong.plays}
+          likes={likedSong.likes}
+          reposts={likedSong.reposts}
+          comments={likedSong.comments}
+          album_art={likedSong.album_art}
+          location={likedSong.location}
+          artist_pic={likedSong.artist_pic}
+        />
+      )}
     </ul>
   </div>
 );
