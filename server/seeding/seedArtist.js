@@ -2,7 +2,7 @@ var faker = require('faker');
 var fakeData = require('./fakeData.js');
 var db = require('../db/index.js')
 
-module.exports.createArtist = function(j, callback) {
+module.exports.createArtist = function(j) {
 
   fakeArtist = fakeData.fakeNames[j];
   fakeAbout = '';
@@ -52,7 +52,7 @@ module.exports.createArtist = function(j, callback) {
   })
     .then(function (artist) {
       console.log('Success seeding artist data');
-      callback(fakeArtist);
+      console.log('55 seedArtist: ' + artist)
 
     })
     .catch(function (err) {
@@ -64,5 +64,7 @@ module.exports.createArtist = function(j, callback) {
       console.log('There was an error with getting random data from drycodes');
       console.log('error: ' + err.body);
     });
+
+  return fakeArtist;
 
 }

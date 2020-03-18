@@ -11,6 +11,8 @@ module.exports.generateSong = function(username) {
   var index = Math.floor(Math.random() * 100);
   var fakeSongName = fakeData.fakeSongs[index];
 
+  /// NEED to find ARtist in db. Randomly anyone.
+
   //////// Generate random Location
   var city = faker.address.city();
   var country = faker.address.country();
@@ -18,8 +20,8 @@ module.exports.generateSong = function(username) {
 
   //////// Generate profile picture
   // generate random index number to choose random profile art link
-  var max = fakeArt.profile.length;
-  var num = Math.floor(Math.random() * 20);
+  var max = fakeData.profile.length;
+  var num = Math.floor(Math.random() * max);
   var fakePic = fakeData.profile[num];
   var fakeAlbum = fakeData.album[num];
   /////// GENERATE RANDOM NUMBERSSS
@@ -32,7 +34,7 @@ module.exports.generateSong = function(username) {
   db.SongLike.create({
     user: username,
     song_name: fakeSongName,
-    artist_name: fakeArtistName,
+    artist_name: 'TeST',
     plays: fakePlays,
     likes: fakeLikes,
     reposts: fakeReposts,
