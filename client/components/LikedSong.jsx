@@ -4,11 +4,7 @@ import React from 'react';
 const LikedSong = ({likedSong, user, song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic}) => (
   <li className='INDIVIDUALLIKEDSONGS'>
     <div className='CONTENTSOFLIKEDSONG'>
-      <span className='ALBUMART'>
-        <div className='ALBUMART2'>
-          <span className='ALBUMARTIMAGE'>{album_art}</span>
-        </div>
-      </span>
+      <span className='ALBUMART'>{album_art}</span>
 
       <div className='MEDIA'>
         <div className='SONGNAMEARTISTINFO'>

@@ -34,7 +34,7 @@ class Sidebar extends React.Component {
     // artist.about = artist.data.about.substring(2, length - 2).split('\",\"')
     // artist.links = artist.data.links.split(' ');
     var artist = results.artist;
-
+    console.log(artist.name);
     that.setState({
       track_count: artist.track_count,
       follower_count: artist.follower_count,
@@ -46,39 +46,39 @@ class Sidebar extends React.Component {
   }
 
   // send get req when component renders/aka refresh
-  componentDidMount() {
-    var that = this;
-    axios.get('/artist')
-      .then(function(results) {
-        console.log(results)
-        that.formatData(results.data, that);
-      })
-      .catch(function(err) {
-        console.log('There was an error trying to get a random artist from the server.')
-      });
-
-  }
-
-  // send get req before component renders.
-  // componentWillMount() {
-  //   // get req here
+  // componentDidMount() {
   //   var that = this;
-  //   var name = 'Dedrick.Hauck';
-
-  //   axios.get(`/artist/?name=${name}`)
+  //   axios.get('/artist')
   //     .then(function(results) {
-  //       that.formatData(results, that);
-  //       //convert paragraph into array of strings
-  //       // var length = artist.data.about.length-1;
-  //       // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
-  //       // artist.data.links = artist.data.links.split(' ');
-  //       // that.setState(artist.data);
-  //       //console.log(JSON.stringify(artist.data));
+  //       console.log(results)
+  //       that.formatData(results.data, that);
   //     })
   //     .catch(function(err) {
-  //       console.log(err);
+  //       console.log('There was an error trying to get a random artist from the server.')
   //     });
+
   // }
+
+  //send get req before component renders.
+  componentWillMount() {
+    // get req here
+    var that = this;
+    var name = 'Dedrick.Hauck';
+    // axios.get(`/artist/?name=${name}`)
+    axios.get(`/artist`)
+      .then(function(results) {
+        that.formatData(results.data, that);
+        //convert paragraph into array of strings
+        // var length = artist.data.about.length-1;
+        // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
+        // artist.data.links = artist.data.links.split(' ');
+        // that.setState(artist.data);
+        //console.log(JSON.stringify(artist.data));
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
 
 
 
@@ -130,3 +130,14 @@ class Sidebar extends React.Component {
 
 
 export default Sidebar;
+
+
+// If else statement
+// {
+//   this.state.likedSongs.length === 0 ?
+//   (<span>0</span>)
+//   :
+//   (<LikedSongs
+//     likedSongs={this.state.likedSongs}
+//   />)
+// }
