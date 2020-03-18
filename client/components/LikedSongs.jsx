@@ -4,7 +4,7 @@ import LikedSong from './LikedSong.jsx';
 
 
 
-const LikedSongs = ({likedSongs}) => (
+const LikedSongs = ({likedSongs, showArtistInfo}) => (
 
   <div>
     <span className='LIKEDSONGCLASS'>
@@ -28,6 +28,8 @@ const LikedSongs = ({likedSongs}) => (
           album_art={likedSong.album_art}
           location={likedSong.location}
           artist_pic={likedSong.artist_pic}
+          showArtistInfo={showArtistInfo}
+
         />
 
       )}

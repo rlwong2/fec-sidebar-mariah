@@ -80,8 +80,10 @@ class Sidebar extends React.Component {
       });
   }
 
+  // Show artist info and follow button on click
+  showArtistInfo(e) {
 
-
+  }
 
   render() {
     return (
@@ -117,6 +119,7 @@ class Sidebar extends React.Component {
           <div id="likedsongs">
             <LikedSongs
               likedSongs={this.state.likedSongs}
+              showArtistInfo={this.showArtistInfo.bind(this)}
             />
           </div>
         </article>
