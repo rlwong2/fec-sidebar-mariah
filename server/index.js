@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var Sequelize = require('sequelize');
 
 var path = require('path');
 var PORT = 3334;
@@ -15,7 +16,22 @@ var bodyParser = require('body-parser');
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser());
 
-// GET/POST req here
+/////// GET/POST req here ////
+
+// Get a random artist
+app.get('/artist', function(req, res) {
+  db.Artist.findOne({
+    order: Sequelize.literal('rand()')
+  })
+    .then(function(artist) {
+      res.send(artist);
+    })
+    .catch(function(err) {
+      console.log('Error trying to find a random artist.')
+    });
+});
+
+// Find an artist
 app.get('/artist', function(req, res) {
   db.Artist.findOne({
     where: {

@@ -6,7 +6,7 @@ const LikedSong = ({artistName, songName, albumArtLink}) => (
     <div className='CONTENTSOFLIKEDSONG'>
       <span className='ALBUMART'>
         <div className='ALBUMART2'>
-          <span style='ALBUMARTIMAGE'>{albumArtLink}</span>
+          <span className='ALBUMARTIMAGE'>{albumArtLink}</span>
         </div>
       </span>
 
@@ -15,7 +15,7 @@ const LikedSong = ({artistName, songName, albumArtLink}) => (
           <div className='ARTISTNAME'></div>
           <span>{artistName}</span>
           <div className='SONGNAME'></div>
-          <span>{songNAme}</span>
+          <span>{songName}</span>
         </div>
 
         <ul className='MORESTATS'>

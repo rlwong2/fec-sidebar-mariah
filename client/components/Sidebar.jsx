@@ -20,6 +20,28 @@ class Sidebar extends React.Component {
     };
   }
 
+  // Reformat get data
+  formatData(artist, that) {
+    //convert paragraph into array of strings
+    var length = artist.data.about.length - 1;
+    artist.data.about = artist.data.about.substring(2, length - 2).split('\",\"')
+    artist.data.links = artist.data.links.split(' ');
+    that.setState(artist.data);
+  }
+
+  // send get req when component renders/aka refresh
+  componentDidMount() {
+    var that = this;
+    axios.get('/artist')
+      .then(function(artist) {
+        that.formatData(artist, that);
+      })
+      .catch(function(err) {
+        console.log('There was an error trying to get a random artist from the server.')
+      })
+
+  }
+
   // send get req before component renders.
   componentWillMount() {
     // get req here
@@ -28,11 +50,12 @@ class Sidebar extends React.Component {
 
     axios.get(`/artist/?name=${name}`)
       .then(function(artist) {
+        that.formatData(artist, that);
         //convert paragraph into array of strings
-        var length = artist.data.about.length-1;
-        artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
-        artist.data.links = artist.data.links.split(' ');
-        that.setState(artist.data);
+        // var length = artist.data.about.length-1;
+        // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
+        // artist.data.links = artist.data.links.split(' ');
+        // that.setState(artist.data);
         //console.log(JSON.stringify(artist.data));
       })
       .catch(function(err) {
