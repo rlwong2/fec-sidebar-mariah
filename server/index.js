@@ -22,19 +22,17 @@ app.get('/artist', function(req, res) {
       'id': req.body.id
     }})
     .then(function(artist) {
-      console.log(artist);
-    //   console.log('aritst: ' + artist);
-    // res.send(artist)  //<== uncomment this if removing the artistLikes search.
+      console.log('artistname: ' + artist.name);
+
       return db.SongLike.findAll({
         where: {
           'user': artist.name
         }
       });
-    // })
-    // .then(function(likedsongs) {
-    //   res.send(likedSongs);
+
     })
     .then(function(song) {
+      console.log(song)
       res.send(song);
     })
     .catch(function(err) {
