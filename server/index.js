@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 
 var path = require('path');
-var PORT = 3333;
+var PORT = 3334;
 // import artist model methods
 var db = require('./db/index.js');
 
