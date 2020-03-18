@@ -1,8 +1,9 @@
 var express = require('express');
 var app = express();
+var Sequelize = require('sequelize');
 
 var path = require('path');
-var PORT = 3333;
+var PORT = 3334;
 // import artist model methods
 var db = require('./db/index.js');
 
@@ -15,23 +16,40 @@ var bodyParser = require('body-parser');
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser());
 
-// GET/POST req here
+/////// GET/POST req here ////
+
+// Get a random artist
 app.get('/artist', function(req, res) {
-  console.log('hey' + req.query.name);
+  db.Artist.findOne({
+    order: Sequelize.literal('rand()')
+  })
+    .then(function(artist) {
+      res.send(artist);
+    })
+    .catch(function(err) {
+      console.log('Error trying to find a random artist.')
+    });
+});
+
+// Find an artist
+app.get('/artist', function(req, res) {
   db.Artist.findOne({
     where: {
-      'name': req.query.name
+      'id': req.body.id
     }})
     .then(function(artist) {
-      // // send back the artist info
-      // db.UserLikes.findAll({name: artist.name})
-      //   .then(function(userLikes) {
-      //     res.send(artist, userLikes);
-      //   })
-      //   .catch(function(err) {
-      //     console.log('There was an error trying to find artist likes');
-      //   });
-      res.send(artist);  //<== uncomment this if removing the artistLikes search.
+      console.log('artistname: ' + artist.name);
+
+      return db.SongLike.findAll({
+        where: {
+          'user': artist.name
+        }
+      });
+
+    })
+    .then(function(song) {
+      console.log(song)
+      res.send(song);
     })
     .catch(function(err) {
       console.log('Could not find artist in database');
@@ -73,4 +91,4 @@ app.post('/user/likes', function(req, res) {
 // listen for reqs
 app.listen(PORT, () => {
   console.log(`Server listening in on port ${PORT}`);
-});
+})
