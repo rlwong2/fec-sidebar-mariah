@@ -24,12 +24,10 @@ module.exports.createArtist = function(j) {
 
   // Generate random amount of social links
   var numLinks = Math.ceil(Math.random() * 4);
-  console.log(numLinks);
   var linkArr = [];
   while (numLinks > 0) {
     var newLink = faker.internet.url();
-    console.log(newLink + ' ----' + Array.isArray(newLink))
-    linkArr.push(newLink)
+    linkArr.push(newLink);
     numLinks--;
   }
 
@@ -52,7 +50,6 @@ module.exports.createArtist = function(j) {
   })
     .then(function (artist) {
       console.log('Success seeding artist data');
-      console.log('55 seedArtist: ' + artist)
 
     })
     .catch(function (err) {
