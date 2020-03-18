@@ -64,7 +64,6 @@ app.get('/artist', function(req, res) {
 
     })
     .then(function(songs) {
-      console.log(songs)
       res.send({ 'artist': artistInfo, 'likedSongs': songs });
     })
     .catch(function(err) {
@@ -72,15 +71,22 @@ app.get('/artist', function(req, res) {
     });
 });
 
+// If have time, make an update request to add number to follower count, after clicking follower button.
+
 // Adds new artist to the db, going to use to fill up db.
 app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
   //
   console.log(JSON.stringify(req.body));
-  db.Artist.create(req.body)
+  db.Artist.findOrCreate({
+    where: {
+      name: req.body.name
+    },
+    defaults: req.body
+  })
     .then(function(artist) {
       console.log('New artist entry has been added to database');
-      res.send(artist);
+      res.send(artist.name);
       // Send a response that does something maybe.
     })
     .catch(function(err) {
