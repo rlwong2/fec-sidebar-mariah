@@ -4,7 +4,7 @@ import axios from 'axios';
 import StatCounts from './StatCounts.jsx';
 import Links from './Links.jsx';
 import About from './About.jsx';
-
+import LikedSongs from './LikedSongs.jsx';
 
 class Sidebar extends React.Component {
 
@@ -59,14 +59,24 @@ class Sidebar extends React.Component {
 
             </tbody>
           </table>
+        </article>
 
+        <article>
           <div id="about">
             <About about={this.state.about}/>
           </div>
-
+        </article>
+        <article>
           <div id="weblinks">
             <Links
               links={this.state.links}
+            />
+          </div>
+        </article>
+        <article>
+          <div id="likedsongs">
+            <LikedSongs
+              likedSongs={this.state.track_count}
             />
           </div>
         </article>
