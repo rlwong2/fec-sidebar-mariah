@@ -15,7 +15,7 @@ const LikedSongs = ({likedSongs}) => (
     </span>
 
     <ul>
-      {likedSongs.map((likedSong) => {
+      {likedSongs.map((likedSong) =>
         <LikedSong
           //id={likedSong.id}
           //user={likedSong.user}
@@ -28,8 +28,8 @@ const LikedSongs = ({likedSongs}) => (
           album_art={likedSong.album_art}
           location={likedSong.location}
           artist_pic={likedSong.artist_pic}
-        />;
-      }
+        />
+
       )}
     </ul>
   </div>
