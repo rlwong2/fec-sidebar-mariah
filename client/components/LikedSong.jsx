@@ -1,28 +1,28 @@
 import React from 'react';
 
 
-const LikedSong = ({artistName, songName, albumArtLink}) => (
+const LikedSong = ({likedSong, user, song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic}) => (
   <li className='INDIVIDUALLIKEDSONGS'>
     <div className='CONTENTSOFLIKEDSONG'>
       <span className='ALBUMART'>
         <div className='ALBUMART2'>
-          <span className='ALBUMARTIMAGE'>{albumArtLink}</span>
+          <span className='ALBUMARTIMAGE'>{album_art}</span>
         </div>
       </span>
 
       <div className='MEDIA'>
         <div className='SONGNAMEARTISTINFO'>
           <div className='ARTISTNAME'></div>
-          <span>{artistName}</span>
+          <span>{artist_name}</span>
           <div className='SONGNAME'></div>
-          <span>{songName}</span>
+          <span>{song_name}</span>
         </div>
 
         <ul className='MORESTATS'>
-          <li>plays 11</li>
-          <li>likes 10</li>
-          <li>reposts 12</li>
-          <li>comments 2</li>
+          <li>plays {plays}</li>
+          <li>likes {likes} </li>
+          <li>reposts {reposts} </li>
+          <li>comments {comments} </li>
         </ul>
       </div>
     </div>

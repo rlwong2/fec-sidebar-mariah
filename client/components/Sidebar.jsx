@@ -12,33 +12,49 @@ class Sidebar extends React.Component {
     super(props);
 
     this.state = {
+      artistName: '',
+
       links: [],
       about: [],
       follower_count: null,
       following_count: null,
       track_count: null,
+
+      likedSongs: []
     };
   }
 
   // Reformat get data
-  formatData(artist, that) {
+  formatData(results, that) {
+    // artist will be an object
+    // results.artist will have artist bio, results.likedsongs will have an array of liked song data
+
     //convert paragraph into array of strings
-    var length = artist.data.about.length - 1;
-    artist.data.about = artist.data.about.substring(2, length - 2).split('\",\"')
-    artist.data.links = artist.data.links.split(' ');
-    that.setState(artist.data);
+    // var length = artist.data.about.length - 1;
+    // artist.about = artist.data.about.substring(2, length - 2).split('\",\"')
+    // artist.links = artist.data.links.split(' ');
+    var artist = results.artist;
+
+    that.setState({
+      track_count: artist.track_count,
+      follower_count: artist.follower_count,
+      following_count: artist.following_count,
+      about: artist.about,
+      links: artist.links.split(' '),
+      likedSongs: results.likedSongs
+    });
   }
 
   // send get req when component renders/aka refresh
   componentDidMount() {
     var that = this;
     axios.get('/artist')
-      .then(function(artist) {
-        that.formatData(artist, that);
+      .then(function(results) {
+        that.formatData(results, that);
       })
       .catch(function(err) {
         console.log('There was an error trying to get a random artist from the server.')
-      })
+      });
 
   }
 
@@ -49,8 +65,8 @@ class Sidebar extends React.Component {
     var name = 'Dedrick.Hauck';
 
     axios.get(`/artist/?name=${name}`)
-      .then(function(artist) {
-        that.formatData(artist, that);
+      .then(function(results) {
+        that.formatData(results, that);
         //convert paragraph into array of strings
         // var length = artist.data.about.length-1;
         // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
@@ -99,7 +115,7 @@ class Sidebar extends React.Component {
         <article>
           <div id="likedsongs">
             <LikedSongs
-              likedSongs={this.state.track_count}
+              likedSongs={this.state.likedSongs}
             />
           </div>
         </article>
