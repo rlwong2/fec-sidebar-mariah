@@ -20,26 +20,42 @@ app.use(bodyParser());
 
 // Get a random artist
 app.get('/artist', function(req, res) {
+
+  var artistInfo;
+
+  //Search for artist
   db.Artist.findOne({
     order: Sequelize.literal('rand()')
   })
     .then(function(artist) {
-      res.send(artist);
+      artistInfo = artist;
+      return db.SongLike.findAll({
+        where: {
+          'user': artist.name
+        },
+        limit: 3
+      });
+    })
+    .then(function(songs) {
+      res.send({'artist': artistInfo, 'likedSongs': songs});
+
     })
     .catch(function(err) {
-      console.log('Error trying to find a random artist.')
+      console.log('Error trying to find a random artist. ' + err);
     });
 });
 
 // Find an artist
 app.get('/artist', function(req, res) {
+
+  var artistInfo;
+
   db.Artist.findOne({
     where: {
       'id': req.body.id
     }})
     .then(function(artist) {
-      console.log('artistname: ' + artist.name);
-
+      artistInfo = artist;
       return db.SongLike.findAll({
         where: {
           'user': artist.name
@@ -47,9 +63,9 @@ app.get('/artist', function(req, res) {
       });
 
     })
-    .then(function(song) {
-      console.log(song)
-      res.send(song);
+    .then(function(songs) {
+      console.log(songs)
+      res.send({ 'artist': artistInfo, 'likedSongs': songs });
     })
     .catch(function(err) {
       console.log('Could not find artist in database');

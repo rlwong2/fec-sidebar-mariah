@@ -12,7 +12,7 @@ var seedArtist = require('./seedArtist.js')
 var results = [];
 
 // Create 100 artists
-for (var j = 1; j < 99; j ++) {
+for (var j = 1; j < 5; j ++) {
 
   // create a fake artist first
   var username = seedArtist.createArtist(j)

@@ -20,10 +20,10 @@ create table likedsongs (
 create table artist (
   id int not null auto_increment,
   name varchar(25) not null,
-  track_count int not null
+  track_count int not null,
   follower_count int not null,
   following_count int not null,
   links varchar(255),
   about text,
   primary key (id)
-)
+);
