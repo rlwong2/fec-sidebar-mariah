@@ -39,7 +39,7 @@ class Sidebar extends React.Component {
       track_count: artist.track_count,
       follower_count: artist.follower_count,
       following_count: artist.following_count,
-      about: artist.about,
+      about: artist.about.split('. '),
       links: artist.links.split(' '),
       likedSongs: results.likedSongs
     });
@@ -50,7 +50,8 @@ class Sidebar extends React.Component {
     var that = this;
     axios.get('/artist')
       .then(function(results) {
-        that.formatData(results, that);
+        console.log(results)
+        that.formatData(results.data, that);
       })
       .catch(function(err) {
         console.log('There was an error trying to get a random artist from the server.')
@@ -59,25 +60,25 @@ class Sidebar extends React.Component {
   }
 
   // send get req before component renders.
-  componentWillMount() {
-    // get req here
-    var that = this;
-    var name = 'Dedrick.Hauck';
+  // componentWillMount() {
+  //   // get req here
+  //   var that = this;
+  //   var name = 'Dedrick.Hauck';
 
-    axios.get(`/artist/?name=${name}`)
-      .then(function(results) {
-        that.formatData(results, that);
-        //convert paragraph into array of strings
-        // var length = artist.data.about.length-1;
-        // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
-        // artist.data.links = artist.data.links.split(' ');
-        // that.setState(artist.data);
-        //console.log(JSON.stringify(artist.data));
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
-  }
+  //   axios.get(`/artist/?name=${name}`)
+  //     .then(function(results) {
+  //       that.formatData(results, that);
+  //       //convert paragraph into array of strings
+  //       // var length = artist.data.about.length-1;
+  //       // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
+  //       // artist.data.links = artist.data.links.split(' ');
+  //       // that.setState(artist.data);
+  //       //console.log(JSON.stringify(artist.data));
+  //     })
+  //     .catch(function(err) {
+  //       console.log(err);
+  //     });
+  // }
 
 
 
