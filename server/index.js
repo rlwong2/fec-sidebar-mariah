@@ -20,26 +20,42 @@ app.use(bodyParser());
 
 // Get a random artist
 app.get('/artist', function(req, res) {
+
+  var artistInfo;
+
+  //Search for artist
   db.Artist.findOne({
     order: Sequelize.literal('rand()')
   })
     .then(function(artist) {
-      res.send(artist);
+      artistInfo = artist;
+      return db.SongLike.findAll({
+        where: {
+          'user': artist.name
+        },
+        limit: 3
+      });
+    })
+    .then(function(songs) {
+      res.send({'artist': artistInfo, 'likedSongs': songs});
+
     })
     .catch(function(err) {
-      console.log('Error trying to find a random artist.')
+      console.log('Error trying to find a random artist. ' + err);
     });
 });
 
 // Find an artist
 app.get('/artist', function(req, res) {
+
+  var artistInfo;
+
   db.Artist.findOne({
     where: {
       'id': req.body.id
     }})
     .then(function(artist) {
-      console.log('artistname: ' + artist.name);
-
+      artistInfo = artist;
       return db.SongLike.findAll({
         where: {
           'user': artist.name
@@ -47,24 +63,30 @@ app.get('/artist', function(req, res) {
       });
 
     })
-    .then(function(song) {
-      console.log(song)
-      res.send(song);
+    .then(function(songs) {
+      res.send({ 'artist': artistInfo, 'likedSongs': songs });
     })
     .catch(function(err) {
       console.log('Could not find artist in database');
     });
 });
 
+// If have time, make an update request to add number to follower count, after clicking follower button.
+
 // Adds new artist to the db, going to use to fill up db.
 app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
   //
   console.log(JSON.stringify(req.body));
-  db.Artist.create(req.body)
+  db.Artist.findOrCreate({
+    where: {
+      name: req.body.name
+    },
+    defaults: req.body
+  })
     .then(function(artist) {
       console.log('New artist entry has been added to database');
-      res.send(artist);
+      res.send(artist.name);
       // Send a response that does something maybe.
     })
     .catch(function(err) {
