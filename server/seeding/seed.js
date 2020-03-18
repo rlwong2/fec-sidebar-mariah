@@ -17,36 +17,44 @@ for (var j = 0; j < 5; j ++) {
   // create a fake artist first
   var username = seedArtist.createArtist(j)
   //var artistname = result;
+  db.Artist.findOne({
+    order: Sequelize.literal('rand()')
+  })
+  .then((artist) => {
+    console.log('username : ' + artist.name)
+    // Randomly generate how many songs user will have liked
+    var randomSongCount = Math.ceil(Math.random() * 50);
+    console.log('Random Song Count ###: '  + randomSongCount)
 
-  console.log('username :' + username)
+    //Promisify song names
+    var promises = [];
 
-  // Randomly generate how many songs user will have liked
-  var randomSongCount = Math.ceil(Math.random() * 50);
-  console.log('Random Song Count ###: '  + randomSongCount)
+    // generate songs
+    for (var k = 0; k < randomSongCount; k ++ ) {
+      var songName = seedSong.generateSong(username, artist.name);
+      promises.push(songName)
+      console.log('Song just created: ' + songName + ' //// ' + username);
+      console.log('index: ' + k);
+    }
 
-  //Promisify song names
-  var promises = [];
-
-  // generate songs
-  for (var k = 0; k < randomSongCount; k ++ ) {
-    var songName = seedSong.generateSong(username);
-    promises.push(songName)
-    console.log('Song just created: ' + songName + ' //// ' + username);
-    console.log('index: ' + k);
-  }
-
-  Promise.all(promises)
-    .then((results) => {
-      // Push results to keep outer for loop in check.
-      results.push(result)
-    })
-    .catch(() => {
-      console.log('An error has occured trying to generate songs + 44 seed.js')
-    })
+    Promise.all(promises)
+      .then((results) => {
+        // Push results to keep outer for loop in check.
+        results.push(result)
+      })
+      .catch(() => {
+        console.log('An error has occured trying to generate songs + 44 seed.js')
+      })
 
 
-    // (j, function(fakeArtist) {
-      console.log('line 30: should be after song names: ' + username)
+      // (j, function(fakeArtist) {
+        console.log('line 30: should be after song names: ' + username)
+
+  })
+  .catch((err) => {
+    console.log('There was an error finding a random aritst.');
+  })
+
 
   };
   // module.exports = function() {

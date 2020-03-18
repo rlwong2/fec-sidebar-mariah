@@ -5,7 +5,7 @@ var db = require('../db/index.js');
 var fakeData = require('./fakeData.js');
 
 
-module.exports.generateSong = function(username) {
+module.exports.generateSong = function(username, artistName) {
   //////// Get random song name
   // generate random index number
   var index = Math.floor(Math.random() * 100);
@@ -34,7 +34,7 @@ module.exports.generateSong = function(username) {
   db.SongLike.create({
     user: username,
     song_name: fakeSongName,
-    artist_name: 'TeST',
+    artist_name: artistName,
     plays: fakePlays,
     likes: fakeLikes,
     reposts: fakeReposts,
