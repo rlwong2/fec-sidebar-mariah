@@ -17,22 +17,26 @@ app.use(bodyParser());
 
 // GET/POST req here
 app.get('/artist', function(req, res) {
-  console.log('hey' + req.query.name);
   db.Artist.findOne({
     where: {
-      'name': req.query.name
+      'id': req.body.id
     }})
     .then(function(artist) {
-
-      // res.send(artist);  //<== uncomment this if removing the artistLikes search.
+      console.log(artist);
+    //   console.log('aritst: ' + artist);
+    // res.send(artist)  //<== uncomment this if removing the artistLikes search.
       return db.SongLike.findAll({
-        user: artist.name
+        where: {
+          'user': artist.name
+        }
       });
+    // })
+    // .then(function(likedsongs) {
+    //   res.send(likedSongs);
     })
-    .then(function(likedsongs) {
-      res.send(likedSongs);
+    .then(function(song) {
+      res.send(song);
     })
-
     .catch(function(err) {
       console.log('Could not find artist in database');
     });
@@ -73,4 +77,4 @@ app.post('/user/likes', function(req, res) {
 // listen for reqs
 app.listen(PORT, () => {
   console.log(`Server listening in on port ${PORT}`);
-});
+})
