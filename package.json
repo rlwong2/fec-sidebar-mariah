@@ -8,8 +8,10 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
-    "build": "webpack --mode production --watch"
+    "server": "nodemon server/index.js",
+    "build": "webpack --mode production --watch",
+    "test-client": "jest client/tests/test.js",
+    "test-server": "jes server/tests/test.js"
   },
   "dependencies": {
     "axios": "0.19.2",
@@ -34,6 +36,7 @@
     "babel-loader": "8.0.6",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "faker": "4.1.0",
+    "jest": "^25.1.0",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
   }
