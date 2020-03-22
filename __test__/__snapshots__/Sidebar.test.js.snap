@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components render on mount 1`] = `
+<div
+  id="sidebar-right"
+  style={
+    Object {
+      "top": "401px",
+    }
+  }
+>
+  <article
+    id="stats"
+  >
+    <table
+      id="links"
+    >
+      <tbody>
+        <tr>
+          <td
+            className="stat-column"
+          >
+            <h3
+              class="stat-title"
+            >
+              followers
+            </h3>
+            <div
+              class="stat-num"
+            />
+          </td>
+          <td
+            className="stat-column"
+          >
+            <h3
+              class="stat-title"
+            >
+              following
+            </h3>
+            <div
+              class="stat-num"
+            />
+          </td>
+          <td
+            className="stat-column"
+          >
+            <h3
+              class="stat-title"
+            >
+              tracks
+            </h3>
+            <div
+              class="stat-num"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <article>
+    <div
+      id="about"
+    >
+      <div
+        id="collapsed"
+      >
+        <div
+          id="wrapper"
+          style={
+            Object {
+              "maxHeight": "85px",
+            }
+          }
+        >
+          <div
+            id="truncated-description"
+          >
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <article>
+    <div
+      id="weblinks"
+    >
+      <ul />
+    </div>
+  </article>
+  <article>
+    <div
+      id="likedsongs"
+    >
+      <div>
+        <span
+          className="LIKEDSONGCLASS"
+        >
+          <span>
+             ♡
+            <h3
+              className="LIKEDSONGSNUMBER"
+            >
+              0
+               likes 
+            </h3>
+          </span>
+        </span>
+        <ul />
+      </div>
+    </div>
+  </article>
+</div>
+`;

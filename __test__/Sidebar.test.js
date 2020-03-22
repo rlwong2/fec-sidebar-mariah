@@ -5,7 +5,6 @@ import renderer from 'react-test-renderer';
 
 import {configure, shallow, mount, render} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-15.4';
-import request from 'supertest';
 
 configure({adapter: new Adapter()});
 
