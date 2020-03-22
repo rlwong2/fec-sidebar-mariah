@@ -5,13 +5,12 @@ var db = require('../db/index.js');
 var fakeData = require('./fakeData.js');
 
 
-module.exports.generateSong = function(username, artistName) {
+module.exports.generateSong = function(artistName) {
   //////// Get random song name
   // generate random index number
   var index = Math.floor(Math.random() * 100);
   var fakeSongName = fakeData.fakeSongs[index];
 
-  /// NEED to find ARtist in db. Randomly anyone.
 
   //////// Generate random Location
   var city = faker.address.city();
@@ -32,7 +31,6 @@ module.exports.generateSong = function(username, artistName) {
 
   // Create new liked song in database
   db.SongLike.create({
-    user: username,
     song_name: fakeSongName,
     artist_name: artistName,
     plays: fakePlays,
@@ -41,7 +39,7 @@ module.exports.generateSong = function(username, artistName) {
     comments: fakeComments,
     album_art: fakeAlbum,
     location: fakeLocation,
-    artist_pic: fakePic
+    artist_pic: fakePic,
   })
     .then(function (song) {
       console.log('New song like has been added! ');
@@ -49,5 +47,23 @@ module.exports.generateSong = function(username, artistName) {
     })
     .catch(function (err) {
       console.log('there was an error trying to add a new song to likedsongs  table');
+    });
+};
+
+module.exports.findArtist = function() {
+
+  db.Artist.findOne({
+    order: Sequelize.literal('rand()')
+  })
+    .then(function (artist) {
+      console.log(artist.name + 'artist has been found, trying to make song')
+      artistName = artist.name;
+      return generateSong(artist.name)
+    })
+    .then(function(song) {
+      console.log('Song has been created')
+    })
+    .catch(function (err) {
+      console.log('Could not find artist in database');
     });
 };

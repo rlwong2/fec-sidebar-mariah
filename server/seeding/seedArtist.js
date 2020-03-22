@@ -38,6 +38,7 @@ module.exports.createArtist = function(j) {
   var trackCount = Math.ceil(Math.random() * 200);
   var followerCount = Math.floor(Math.random() * 20000);
   var followingCount = Math.floor(Math.random() * 1000);
+  var likedSongs = Math.floor(Math.random() * 200)
 
   // Add the rando, generated info into the database.
   db.Artist.create({
@@ -46,7 +47,8 @@ module.exports.createArtist = function(j) {
     follower_count: followerCount,
     following_count: followingCount,
     about: fakeAbout,
-    links: fakeLinks
+    links: fakeLinks,
+    liked_songs: likedSongs
   })
     .then(function (artist) {
       console.log('Success seeding artist data');
