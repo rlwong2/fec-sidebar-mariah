@@ -40,15 +40,3 @@ test('Displays artist info over artist name hover', () => {
 
   expect(artistName.text()).toEqual('hover');
 });
-
-// Make a test that successfully receives 0 to 3 liked songs, no more than this.
-
-
-/////////// SERVER STUFF BELOW //////
-
-
-// Test random get request is being properly received and responded to
-
-
-// Test specific get request is being properly received and responded to
-

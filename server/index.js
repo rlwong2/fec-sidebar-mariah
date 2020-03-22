@@ -59,6 +59,7 @@ app.get('/artist', function(req, res) {
       return db.SongLike.findAll({
         where: {
           'user': artist.name
+          // set max to 3
         }
       });
 
