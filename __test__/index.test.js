@@ -26,7 +26,7 @@ describe('Checking all get requests', () => {
 
 
   test('random artist endpoint responds with a random artist name', async (done) => {
-    const res = await request(testServer).get('/artist')
+    const res = await request(server).get('/artist');
 
     expect(res.statusCode.toBe(200));
     expect(res.body).toBeDefined();
@@ -35,7 +35,7 @@ describe('Checking all get requests', () => {
 
   test('specific artist endpoint responds with the actual artist', async (done) => {
     var name = 'Snool_Snool'
-    const res = await request(testServer).get(`/artist/?name=${name}`)
+    const res = await request(server).get(`/artist/?name=${name}`);
 
     expect(res.statusCode.toBe(200));
     expect(res.body).toHaveProperty('name', name);
@@ -44,7 +44,7 @@ describe('Checking all get requests', () => {
   test('if artist cannot be found in the database on specific art req, return error', async (done) => {
     var name = 'A nonexistant artist';
 
-    const res = await request(testServer).get(`/artist/?name=${name}`)
+    const res = await request(server).get(`/artist/?name=${name}`)
     expect(res.statusCode.toBe(404));
   })
 

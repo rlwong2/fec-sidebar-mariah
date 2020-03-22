@@ -3,7 +3,7 @@ var app = express();
 var Sequelize = require('sequelize');
 
 var path = require('path');
-var PORT = 3334;
+var PORT = 4444;
 // import artist model methods
 var db = require('./db/index.js');
 
