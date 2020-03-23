@@ -36,7 +36,7 @@ describe('Checking all get requests', () => {
 
   test('specific artist endpoint responds with the actual artist', async (done) => {
     var name = 'Snool_Snool'
-    const res = await request(app).get(`/artist/?name=Snool_Snool`);
+    const res = await request(app).get(`/artistname/?name=Snool_Snool`);
     expect(res.status).toBe(200);
     expect(res.body.artist).toBeDefined();
     expect(res.body.likedSongs).toBeDefined();
@@ -44,8 +44,7 @@ describe('Checking all get requests', () => {
   })
 
   test('if artist cannot be found in the database on specific art req, return error', async (done) => {
-    var name = 'A nonexistant artist';
-    const res = await request(app).get(`/artist/?name=nonexistantartist`);
+    const res = await request(app).get(`/artistname/?name=nonexistantartist`);
     expect(res.status).toBe(404);
     done();
   })

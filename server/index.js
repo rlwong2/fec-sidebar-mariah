@@ -47,13 +47,13 @@ app.get('/artist', function(req, res) {
 });
 
 // Find an artist
-app.get(`/artist/?name=${name}`, function(req, res) {
-
+app.get('/artistname/', function(req, res) {
+  console.log(req.query);
   var artistInfo;
 
   db.Artist.findOne({
     where: {
-      'name': name
+      'name': req.query.name
     }})
     .then(function(artist) {
       artistInfo = artist;
@@ -61,7 +61,8 @@ app.get(`/artist/?name=${name}`, function(req, res) {
         where: {
           'user': artist.name
           // set max to 3
-        }
+        },
+        limit: 3
       });
 
     })
@@ -69,8 +70,9 @@ app.get(`/artist/?name=${name}`, function(req, res) {
       res.send({ 'artist': artistInfo, 'likedSongs': songs });
     })
     .catch(function(err) {
-      console.log('Could not find artist in database');
+      //console.log('Could not find artist in database');
       res.status(404);
+      res.send(`Could not find artist: ${req.query.name} in database`);
     });
 });
 
@@ -113,7 +115,7 @@ app.post('/user/likes', function(req, res) {
 });
 
 
-// listen for reqs
+// //listen for reqs
 // app.listen(PORT, () => {
 //   console.log(`Server listening in on port ${PORT}`);
 // })
