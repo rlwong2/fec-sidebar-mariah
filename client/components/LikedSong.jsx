@@ -5,7 +5,9 @@ import styled from 'styled-components';
 const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic, onArtistNameClick}) => (
   <li className='INDIVIDUALLIKEDSONGS'>
     <div className='CONTENTSOFLIKEDSONG'>
-      <span className='ALBUMART'>{album_art}</span>
+      <span className='ALBUMART'>
+        <img src={album_art}></img>
+      </span>
 
       <div className='MEDIA'>
         <div className='SONGNAMEARTISTINFO'>

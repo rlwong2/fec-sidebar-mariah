@@ -15,10 +15,8 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
     </span>
 
     <ul>
-      {likedSongsList.map((likedSong) => {
+      {likedSongsList.map((likedSong) =>
         <LikedSong
-          //id={likedSong.id}
-          //user={likedSong.user}
           song_name={likedSong.song_name}
           artist_name={likedSong.artist_name}
           plays={likedSong.plays}
@@ -29,8 +27,8 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
           location={likedSong.location}
           artist_pic={likedSong.artist_pic}
           onArtistNameClick={onArtistNameClick}
-        />;
-      }
+        />
+
       )}
     </ul>
   </div>
