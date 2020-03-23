@@ -24,7 +24,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "testclient": "__test__/App.test.js",
-    "testserver": " __test__/index.test.js"
+    "testserver": " __test__/index.test.js",
+    "seed": "node server/seeding/seed.js"
   },
   "dependencies": {
     "axios": "0.19.2",

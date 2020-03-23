@@ -26,7 +26,8 @@ var Artist = db.define('artist', {
   follower_count: Sequelize.INTEGER,
   following_count: Sequelize.INTEGER,
   about: Sequelize.STRING,
-  links: Sequelize.STRING
+  links: Sequelize.STRING,
+  liked_songs: Sequelize.INTEGER
 }, {
   freezeTableName: true,
   timestamps: false
@@ -35,7 +36,6 @@ var Artist = db.define('artist', {
 // Create ArtistLikes table
 
 var SongLike = db.define('likedsongs', {
-  user: Sequelize.STRING,
   song_name: Sequelize.STRING,
   artist_name: Sequelize.STRING,
   plays: Sequelize.INTEGER,

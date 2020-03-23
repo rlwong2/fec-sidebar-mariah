@@ -38,30 +38,36 @@ module.exports.createArtist = function(j) {
   var trackCount = Math.ceil(Math.random() * 200);
   var followerCount = Math.floor(Math.random() * 20000);
   var followingCount = Math.floor(Math.random() * 1000);
-  var likedSongs = Math.floor(Math.random() * 200)
+  var likedSongs = Math.floor(Math.random() * 200);
 
   // Add the rando, generated info into the database.
-  db.Artist.create({
-    name: fakeArtist,
-    track_count: trackCount,
-    follower_count: followerCount,
-    following_count: followingCount,
-    about: fakeAbout,
-    links: fakeLinks,
-    liked_songs: likedSongs
+  db.Artist.findOrCreate({
+    where: {
+      name: fakeArtist
+    },
+    defaults: {
+      name: fakeArtist,
+      track_count: trackCount,
+      follower_count: followerCount,
+      following_count: followingCount,
+      about: fakeAbout,
+      links: fakeLinks,
+      liked_songs: likedSongs
+    }
   })
-    .then(function (artist) {
-      console.log('Success seeding artist data');
+    .then(function (result) {
+      var artist = result[0];
+      var created = result[1];
+
+      if (!created) {
+        console.log('artist already exists')
+      } else {
+        console.log('Success creating new artist');
+      }
 
     })
     .catch(function (err) {
       console.log('An error occurred trying to add new artist to the database');
-    })
-
-
-    .catch((err) => {
-      console.log('There was an error with getting random data from drycodes');
-      console.log('error: ' + err.body);
     });
 
   return fakeArtist;

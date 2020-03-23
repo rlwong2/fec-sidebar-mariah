@@ -5,12 +5,13 @@ var db = require('../db/index.js');
 var fakeData = require('./fakeData.js');
 
 
-module.exports.generateSong = function(artistName) {
+var generateSong = function(artistName) {
   //////// Get random song name
   // generate random index number
   var index = Math.floor(Math.random() * 100);
   var fakeSongName = fakeData.fakeSongs[index];
 
+  console.log('check 154')
 
   //////// Generate random Location
   var city = faker.address.city();
@@ -29,6 +30,7 @@ module.exports.generateSong = function(artistName) {
   var fakeReposts = Math.ceil(fakeLikes / (20 * (Math.random() * 3)));
   var fakeComments = Math.ceil(fakeReposts / ((Math.random() * 5 + .5)));
 
+  console.log('echeck 33')
   // Create new liked song in database
   db.SongLike.create({
     song_name: fakeSongName,
@@ -39,7 +41,7 @@ module.exports.generateSong = function(artistName) {
     comments: fakeComments,
     album_art: fakeAlbum,
     location: fakeLocation,
-    artist_pic: fakePic,
+    artist_pic: fakePic
   })
     .then(function (song) {
       console.log('New song like has been added! ');
@@ -58,7 +60,8 @@ module.exports.findArtist = function() {
     .then(function (artist) {
       console.log(artist.name + 'artist has been found, trying to make song')
       artistName = artist.name;
-      return generateSong(artist.name)
+      console.log(typeof generateSong)
+      return generateSong(artistName);
     })
     .then(function(song) {
       console.log('Song has been created')
