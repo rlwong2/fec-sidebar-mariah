@@ -86,6 +86,9 @@ app.get('/artistname/', function(req, res) {
 
 // If have time, make an update request to add number to follower count, after clicking follower button.
 
+
+
+
 // Adds new artist to the db, going to use to fill up db.
 app.post('/artist', function(req, res) {
   // req.body should be an object with relevant values
