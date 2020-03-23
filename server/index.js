@@ -29,11 +29,15 @@ app.get('/artist', function(req, res) {
   })
     .then(function(artist) {
       artistInfo = artist;
+      var limitNum = artist.liked_songs;
+      if (limitNum > 3) {
+        limitNum = 3;
+      }
       return db.SongLike.findAll({
         where: {
-          'user': artist.name
+          order: Sequelize.literal('rand()')
         },
-        limit: 3
+        limit: limitNum
       });
     })
     .then(function(songs) {
@@ -57,12 +61,16 @@ app.get('/artistname/', function(req, res) {
     }})
     .then(function(artist) {
       artistInfo = artist;
+      var limitNum = artist.liked_songs;
+      if (limitNum > 3) {
+        limitNum = 3;
+      }
       return db.SongLike.findAll({
         where: {
-          'user': artist.name
+          order: Sequelize.literal('rand()')
           // set max to 3
         },
-        limit: 3
+        limit: limitNum
       });
 
     })
@@ -115,9 +123,9 @@ app.post('/user/likes', function(req, res) {
 });
 
 
-// //listen for reqs
-// app.listen(PORT, () => {
-//   console.log(`Server listening in on port ${PORT}`);
-// })
+//listen for reqs
+app.listen(PORT, () => {
+  console.log(`Server listening in on port ${PORT}`);
+});
 
-module.exports = app;
+// module.exports = app;

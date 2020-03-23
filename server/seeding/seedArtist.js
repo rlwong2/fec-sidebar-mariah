@@ -38,7 +38,7 @@ module.exports.createArtist = function(j) {
   var trackCount = Math.ceil(Math.random() * 200);
   var followerCount = Math.floor(Math.random() * 20000);
   var followingCount = Math.floor(Math.random() * 1000);
-  var likedSongs = Math.floor(Math.random() * 200);
+  var likedSongs = Math.floor(Math.random() * 10);
 
   // Add the rando, generated info into the database.
   db.Artist.findOrCreate({
