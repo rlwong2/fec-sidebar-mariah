@@ -6,6 +6,8 @@ import Links from './Links.jsx';
 import About from './About.jsx';
 import LikedSongs from './LikedSongs.jsx';
 
+import style from 'styled-components';
+
 class Sidebar extends React.Component {
 
   constructor(props) {
