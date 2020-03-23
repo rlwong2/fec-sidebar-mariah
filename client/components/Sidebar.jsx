@@ -47,6 +47,18 @@ const AboutDiv = styled.div`
   color: #333;
 `;
 
+const LinksDiv = styled.div`
+  font-size: 12px;
+  display: block;
+`;
+
+const ArticleLiked = styled.div`
+  margin-bottom: 20px;
+  transition: all .2s linear;
+  display: block;
+}
+`;
+
 //////////////////////////asdfas
 
 
@@ -149,20 +161,20 @@ class Sidebar extends React.Component {
           </AboutDiv>
         </article>
         <article>
-          <div id="weblinks">
+          <LinksDiv id="weblinks">
             <Links
               links={this.state.links}
             />
-          </div>
+          </LinksDiv>
         </article>
-        <article>
+        <ArticleLiked>
           <div id="likedsongs">
             <LikedSongs
               likedSongsList={this.state.likedSongsList}
               count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
             />
           </div>
-        </article>
+        </ArticleLiked>
 
 
       </SidebarContainer>
