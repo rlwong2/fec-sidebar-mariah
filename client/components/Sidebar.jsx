@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
     console.log(this.state)
   }
 
-  // Create onclick function for artist name to load that artist
+  // Create onclick function for artist nadfaame to load that artist
   onArtistNameClick(e) {
     // get req here
     var that = this;
