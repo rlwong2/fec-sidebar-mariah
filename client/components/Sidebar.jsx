@@ -8,11 +8,45 @@ import LikedSongs from './LikedSongs.jsx';
 
 import styled from 'styled-components';
 
-
 ///////////////// STYLED COMPONENTS ////
 const SidebarContainer = styled.div`
   top: 401px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  display: block;
+  color: #333;
+
 `;
+
+const StatTable = styled.table`
+  width: 100%;
+  margin-bottom: 14px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  border-color: grey;
+`;
+
+const Tbody = styled.tbody`
+  display: table-row-group;
+  vertical-alight: middle;
+  border-color: inherit;
+`;
+
+const Tr = styled.tr`
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+`;
+
+const AboutDiv = styled.div`
+  margin-bottom: 20px;
+  display: block;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+`;
+
 //////////////////////////asdfas
 
 
@@ -93,26 +127,26 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <div id='sidebar-right' style={{top: '401px'}}>
+      <SidebarContainer id='sidebar-right'>
 
         <article id="stats">
-          <table id="links">
-            <tbody>
-              <tr>
+          <StatTable id="links">
+            <Tbody>
+              <Tr>
 
                 <StatCounts statTitle='followers' statNum={this.state.follower_count} />
                 <StatCounts statTitle='following' statNum={this.state.following_count} />
                 <StatCounts statTitle='tracks' statNum={this.state.track_count} />
-              </tr>
+              </Tr>
 
-            </tbody>
-          </table>
+            </Tbody>
+          </StatTable>
         </article>
 
         <article>
-          <div id="about">
+          <AboutDiv id="about">
             <About about={this.state.about}/>
-          </div>
+          </AboutDiv>
         </article>
         <article>
           <div id="weblinks">
@@ -131,7 +165,7 @@ class Sidebar extends React.Component {
         </article>
 
 
-      </div>
+      </SidebarContainer>
     );
   }
 }
