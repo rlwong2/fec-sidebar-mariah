@@ -52,6 +52,60 @@ const AlbumImage = styled.img`
     opacity: 1;
 `;
 
+const SongArtist = styled.div`
+  margin-top: 0;
+  font-size: 14px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+`;
+
+const ArtistDiv = styled.div`
+  font-weight: 100;
+  color: #999;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
+  cursor: pointer;
+`;
+
+const ArtistNameSpan = styled.span`
+    line-height: 1;
+    margin-bottom: 2px;
+    text-decoration: none;
+`;
+
+const SongNameDiv = styled.div`
+  height: 1.3em;
+  float: left;
+  text-decoration: none;
+  color: #333;
+  max-width: 100%;
+    font-weight: 100;
+    box-sizing: border-box;
+`;
+
+const SmallUl = styled.ul`
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+
+`;
+
 const SmallLi = styled.li`
 `;
 
@@ -67,12 +121,15 @@ const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, alb
       </AlbumArtDiv>
 
       <MediaInfoDiv className='MEDIA'>
-        <div className='SONGNAMEARTISTINFO'>
-          <div className='ARTISTNAME'></div>
-          <span onClick={onArtistNameClick}>{artist_name}</span>
-          <div className='SONGNAME'></div>
-          <span>{song_name}</span>
-        </div>
+        <SongArtist className='SONGNAMEARTISTINFO'>
+          <ArtistDiv className='ARTISTNAME'>
+            <ArtistNameSpan onClick={onArtistNameClick}>{artist_name}</ArtistNameSpan>
+          </ArtistDiv>
+          <SongNameDiv className='SONGNAME'>
+            <span>{song_name}</span>
+          </SongNameDiv>
+
+        </SongArtist>
 
         <ul className='MORESTATS'>
           <SmallLi>plays {plays}</SmallLi>
