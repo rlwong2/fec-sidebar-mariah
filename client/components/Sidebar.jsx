@@ -6,7 +6,16 @@ import Links from './Links.jsx';
 import About from './About.jsx';
 import LikedSongs from './LikedSongs.jsx';
 
-//import styled from 'styled-components';
+import styled from 'styled-components';
+
+
+///////////////// STYLED COMPONENTS ////
+const SidebarContainer = styled.div`
+  top: 401px;
+`;
+//////////////////////////asdfas
+
+
 
 class Sidebar extends React.Component {
 
@@ -81,9 +90,6 @@ class Sidebar extends React.Component {
   // }
 
 
-  ///////////////// STYLED COMPONENTS ////
-
-  //////////////////////////
 
   render() {
     return (
