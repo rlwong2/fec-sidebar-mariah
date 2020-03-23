@@ -1,10 +1,10 @@
 import React from 'react';
 import LikedSong from './LikedSong.jsx';
 
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
 
-const LikedSongs = ({likedSongs, count, onArtistNameClick, onHover}) => (
+const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
 
   <div>
     <span className='LIKEDSONGCLASS'>
@@ -15,7 +15,7 @@ const LikedSongs = ({likedSongs, count, onArtistNameClick, onHover}) => (
     </span>
 
     <ul>
-      {likedSongs.map((likedSong) => {
+      {likedSongsList.map((likedSong) => {
         <LikedSong
           //id={likedSong.id}
           //user={likedSong.user}

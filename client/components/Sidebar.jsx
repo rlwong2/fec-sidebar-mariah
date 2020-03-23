@@ -6,7 +6,7 @@ import Links from './Links.jsx';
 import About from './About.jsx';
 import LikedSongs from './LikedSongs.jsx';
 
-import styled from 'styled-components';
+//import styled from 'styled-components';
 
 class Sidebar extends React.Component {
 
@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
       following_count: null,
       track_count: null,
       liked_songs: null,
-      likedSongs: []
+      likedSongsList: []
     };
   }
 
@@ -30,14 +30,16 @@ class Sidebar extends React.Component {
   formatData(results, that) {
     var artist = results.artist;
     console.log(artist.name);
+
     that.setState({
+      artistName: artist.name,
       track_count: artist.track_count,
       follower_count: artist.follower_count,
       following_count: artist.following_count,
       about: artist.about.split('. '),
       links: artist.links.split(' '),
       liked_songs: artist.liked_songs,
-      likedSongs: results.likedSongs
+      likedSongsList: results.likedSongs
     });
   }
 
@@ -114,7 +116,8 @@ class Sidebar extends React.Component {
         <article>
           <div id="likedsongs">
             <LikedSongs
-              likedSongs={this.state.likedSongs} count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
+              likedSongsList={this.state.likedSongsList}
+              count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
             />
           </div>
         </article>
