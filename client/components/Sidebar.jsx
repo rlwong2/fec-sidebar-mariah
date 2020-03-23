@@ -6,6 +6,8 @@ import Links from './Links.jsx';
 import About from './About.jsx';
 import LikedSongs from './LikedSongs.jsx';
 
+//import styled from 'styled-components';
+
 class Sidebar extends React.Component {
 
   constructor(props) {
@@ -19,69 +21,69 @@ class Sidebar extends React.Component {
       follower_count: null,
       following_count: null,
       track_count: null,
-
-      likedSongs: []
+      liked_songs: null,
+      likedSongsList: []
     };
   }
 
   // Reformat get data
   formatData(results, that) {
-    // artist will be an object
-    // results.artist will have artist bio, results.likedsongs will have an array of liked song data
-
-    //convert paragraph into array of strings
-    // var length = artist.data.about.length - 1;
-    // artist.about = artist.data.about.substring(2, length - 2).split('\",\"')
-    // artist.links = artist.data.links.split(' ');
     var artist = results.artist;
     console.log(artist.name);
+
     that.setState({
+      artistName: artist.name,
       track_count: artist.track_count,
       follower_count: artist.follower_count,
       following_count: artist.following_count,
       about: artist.about.split('. '),
       links: artist.links.split(' '),
-      likedSongs: results.likedSongs
+      liked_songs: artist.liked_songs,
+      likedSongsList: results.likedSongs
     });
+
+    console.log(this.state)
   }
 
-  // send get req when component renders/aka refresh
-  // componentDidMount() {
-  //   var that = this;
-  //   axios.get('/artist')
-  //     .then(function(results) {
-  //       console.log(results)
-  //       that.formatData(results.data, that);
-  //     })
-  //     .catch(function(err) {
-  //       console.log('There was an error trying to get a random artist from the server.')
-  //     });
+  // Create onclick function for artist nadfaame to load that artist
+  onArtistNameClick(e) {
+    // get req here
+    var that = this;
+    console.log('hey');
+    // axios.get random artist
+    axios.get(`/artistname/?name=${e.currentTarget.textContent}`)
+      .then(function (results) {
+        that.formatData(results.data, that);
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
 
-  // }
 
   //send get req before component renders.
   componentWillMount() {
     // get req here
     var that = this;
-    var name = 'Dedrick.Hauck';
-    // axios.get(`/artist/?name=${name}`)
+    // axios.get random artist
     axios.get(`/artist`)
       .then(function(results) {
         that.formatData(results.data, that);
-        //convert paragraph into array of strings
-        // var length = artist.data.about.length-1;
-        // artist.data.about = artist.data.about.substring(2, length -2).split('\",\"')
-        // artist.data.links = artist.data.links.split(' ');
-        // that.setState(artist.data);
-        //console.log(JSON.stringify(artist.data));
       })
       .catch(function(err) {
         console.log(err);
       });
   }
 
+  // On Hover function to be made if there's time.
+  // onHover() {
+
+  // }
 
 
+  ///////////////// STYLED COMPONENTS ////
+
+  //////////////////////////
 
   render() {
     return (
@@ -116,7 +118,8 @@ class Sidebar extends React.Component {
         <article>
           <div id="likedsongs">
             <LikedSongs
-              likedSongs={this.state.likedSongs}
+              likedSongsList={this.state.likedSongsList}
+              count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
             />
           </div>
         </article>
@@ -127,17 +130,4 @@ class Sidebar extends React.Component {
   }
 }
 
-
-
 export default Sidebar;
-
-
-// If else statement
-// {
-//   this.state.likedSongs.length === 0 ?
-//   (<span>0</span>)
-//   :
-//   (<LikedSongs
-//     likedSongs={this.state.likedSongs}
-//   />)
-// }
