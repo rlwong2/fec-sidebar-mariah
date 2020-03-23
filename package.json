@@ -4,18 +4,35 @@
   "description": "",
   "author": "",
   "license": "",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      "map",
+      "ts",
+      "tsx",
+      "node"
+    ]
+  },
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
-    "build": "webpack --mode production --watch"
+    "server": "nodemon server/index.js",
+    "build": "webpack --mode production --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "testclient": "__test__/App.test.js",
+    "testserver": " __test__/index.test.js",
+    "seed": "node server/seeding/seed.js"
   },
   "dependencies": {
     "axios": "0.19.2",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "dotenv": "8.2.0",
+    "enzyme-adapter-react-15.4": "^1.4.1",
     "express": "^4.15.0",
     "jquery": "^3.1.1",
     "mysql": "2.18.1",
@@ -32,8 +49,15 @@
     "@babel/preset-react": "^7.8.3",
     "axios": "^0.19.2",
     "babel-loader": "8.0.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-15.4": "^1.4.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "faker": "4.1.0",
+    "jest": "^25.1.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-dom": "^15.4.2",
+    "react-test-renderer": "^15.4.1",
+    "supertest": "^4.0.2",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
   }

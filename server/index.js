@@ -3,7 +3,7 @@ var app = express();
 var Sequelize = require('sequelize');
 
 var path = require('path');
-var PORT = 3334;
+var PORT = 4444;
 // import artist model methods
 var db = require('./db/index.js');
 
@@ -29,11 +29,15 @@ app.get('/artist', function(req, res) {
   })
     .then(function(artist) {
       artistInfo = artist;
+      var limitNum = artist.liked_songs;
+      if (limitNum > 3) {
+        limitNum = 3;
+      }
       return db.SongLike.findAll({
         where: {
-          'user': artist.name
+          order: Sequelize.literal('rand()')
         },
-        limit: 3
+        limit: limitNum
       });
     })
     .then(function(songs) {
@@ -42,24 +46,31 @@ app.get('/artist', function(req, res) {
     })
     .catch(function(err) {
       console.log('Error trying to find a random artist. ' + err);
+      res.status(404);
     });
 });
 
 // Find an artist
-app.get('/artist', function(req, res) {
-
+app.get('/artistname/', function(req, res) {
+  console.log(req.query);
   var artistInfo;
 
   db.Artist.findOne({
     where: {
-      'id': req.body.id
+      'name': req.query.name
     }})
     .then(function(artist) {
       artistInfo = artist;
+      var limitNum = artist.liked_songs;
+      if (limitNum > 3) {
+        limitNum = 3;
+      }
       return db.SongLike.findAll({
         where: {
-          'user': artist.name
-        }
+          order: Sequelize.literal('rand()')
+          // set max to 3
+        },
+        limit: limitNum
       });
 
     })
@@ -67,11 +78,16 @@ app.get('/artist', function(req, res) {
       res.send({ 'artist': artistInfo, 'likedSongs': songs });
     })
     .catch(function(err) {
-      console.log('Could not find artist in database');
+      //console.log('Could not find artist in database');
+      res.status(404);
+      res.send(`Could not find artist: ${req.query.name} in database`);
     });
 });
 
 // If have time, make an update request to add number to follower count, after clicking follower button.
+
+
+
 
 // Adds new artist to the db, going to use to fill up db.
 app.post('/artist', function(req, res) {
@@ -110,7 +126,9 @@ app.post('/user/likes', function(req, res) {
 });
 
 
-// listen for reqs
+//listen for reqs
 app.listen(PORT, () => {
   console.log(`Server listening in on port ${PORT}`);
-})
+});
+
+// module.exports = app;
