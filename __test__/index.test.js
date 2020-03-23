@@ -38,7 +38,8 @@ describe('Checking all get requests', () => {
     var name = 'Snool_Snool'
     const res = await request(app).get(`/artist/?name=Snool_Snool`);
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty('name', name);
+    expect(res.body.artist).toBeDefined();
+    expect(res.body.likedSongs).toBeDefined();
     done();
   })
 

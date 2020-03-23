@@ -1,6 +1,7 @@
 //const app = require('../app.js');
 import React from 'react';
 import Sidebar from '../client/components/Sidebar.jsx';
+import Links from '../client/components/Links.jsx';
 import renderer from 'react-test-renderer';
 
 import {configure, shallow, mount, render} from 'enzyme';

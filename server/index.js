@@ -42,17 +42,18 @@ app.get('/artist', function(req, res) {
     })
     .catch(function(err) {
       console.log('Error trying to find a random artist. ' + err);
+      res.status(404);
     });
 });
 
 // Find an artist
-app.get('/artist', function(req, res) {
+app.get(`/artist/?name=${name}`, function(req, res) {
 
   var artistInfo;
 
   db.Artist.findOne({
     where: {
-      'id': req.body.id
+      'name': name
     }})
     .then(function(artist) {
       artistInfo = artist;
@@ -69,6 +70,7 @@ app.get('/artist', function(req, res) {
     })
     .catch(function(err) {
       console.log('Could not find artist in database');
+      res.status(404);
     });
 });
 
