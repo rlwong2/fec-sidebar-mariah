@@ -1,16 +1,16 @@
 import React from 'react';
 import LikedSong from './LikedSong.jsx';
 
+import styled from 'styled-components';
 
 
-
-const LikedSongs = ({likedSongs}) => (
+const LikedSongs = ({likedSongs, count, onArtistNameClick, onHover}) => (
 
   <div>
     <span className='LIKEDSONGCLASS'>
       <span> ♡
         <h3 className='LIKEDSONGSNUMBER'>
-          {likedSongs.length} likes </h3>
+          {count} likes </h3>
       </span>
     </span>
 
@@ -28,6 +28,7 @@ const LikedSongs = ({likedSongs}) => (
           album_art={likedSong.album_art}
           location={likedSong.location}
           artist_pic={likedSong.artist_pic}
+          onArtistNameClick={onArtistNameClick}
         />;
       }
       )}
