@@ -107,11 +107,33 @@ const SmallUl = styled.ul`
 `;
 
 const SmallLi = styled.li`
+  display: list-item;
+  text-align: -webkit-match-parent;
+  list-style: none;
+`;
+
+const SmallSpan = styled.span`
+  margin-right: 9px;
+  margin-bottom: 5px;
+  color: #999;
+  font-size: 11px;
+  line-height: 12px;
+  display: inline-block;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+
+  display: inline-block;
+  content: "";
+  vertical-align: top;
+  background-repeat: no-repeat;
+  background-position: 50%;
 `;
 
 
 
-const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic, onArtistNameClick}) => (
+const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic, onArtistNameClick, numberConversion}) => (
   <Li className='INDIVIDUALLIKEDSONGS'>
     <SongDiv className='CONTENTSOFLIKEDSONG'>
       <AlbumArtDiv>
@@ -131,12 +153,12 @@ const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, alb
 
         </SongArtist>
 
-        <ul className='MORESTATS'>
-          <SmallLi>plays {plays}</SmallLi>
-          <SmallLi>likes {likes} </SmallLi>
-          <SmallLi>reposts {reposts} </SmallLi>
-          <SmallLi>comments {comments} </SmallLi>
-        </ul>
+        <SmallUl className='MORESTATS'>
+          <SmallLi><SmallSpan>► {numberConversion(plays)}</SmallSpan></SmallLi>
+          <SmallLi><SmallSpan>❤ {numberConversion(likes)} </SmallSpan></SmallLi>
+          <SmallLi><SmallSpan>∞ {numberConversion(reposts)} </SmallSpan></SmallLi>
+          <SmallLi><SmallSpan>❗ {numberConversion(comments)} </SmallSpan></SmallLi>
+        </SmallUl>
       </MediaInfoDiv>
     </SongDiv>
   </Li>

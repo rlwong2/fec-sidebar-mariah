@@ -2,6 +2,7 @@ import React from 'react';
 import Link from './Link.jsx';
 import styled from 'styled-components';
 
+import { FaInstagram, FaTwitter, FaFacebookF, FaConnectdevelop} from 'react-icons/fa';
 // Website names
 
 var array = ['Instagram', 'Twitter', 'Facebook', 'Website'];

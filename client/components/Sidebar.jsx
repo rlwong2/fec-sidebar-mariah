@@ -14,6 +14,11 @@ const SidebarContainer = styled.div`
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   display: block;
   color: #333;
+      position: absolute;
+    top: 30px;
+    bottom: 0;
+    right: 0;
+    width: 300px;
 
 `;
 
@@ -85,20 +90,50 @@ class Sidebar extends React.Component {
   formatData(results, that) {
     var artist = results.artist;
     console.log(artist.name);
+    console.log(artist.track_count)
+    console.log(artist.follower_count)
+    console.log(artist.following_count)
+    // Change numbers into something easy to read
+    var trackCount = that.numberConversion(artist.track_count);
+    var followerCount = that.numberConversion(artist.follower_count);
+    var followingCount = that.numberConversion(artist.following_count);
 
     that.setState({
       artistName: artist.name,
-      track_count: artist.track_count,
-      follower_count: artist.follower_count,
-      following_count: artist.following_count,
+      track_count: trackCount,
+      follower_count: followerCount,
+      following_count: followingCount,
       about: artist.about.split('. '),
       links: artist.links.split(' '),
       liked_songs: artist.liked_songs,
       likedSongsList: results.likedSongs
     });
 
-    console.log(this.state)
+    console.log(this.state);
   }
+
+  // Make numbers prettier to read
+  numberConversion(number) {
+    console.log('ASfhaksf' + number)
+    if (!number) {
+      return number;
+    }
+
+    if (number > 9999 && number < 1000000) {
+      var stringNum = number.toString();
+      var firstThree = stringNum.slice(0, -3);
+      firstThree += 'K';
+      number = firstThree;
+    }
+    if (number > 999999) {
+      var stringNum = number.toString();
+      var firstThree = stringNum.slice(0, -6);
+      firstThree += 'M';
+      number = firstThree;
+    }
+    return number;
+  }
+
 
   // Create onclick function for artist nadfaame to load that artist
   onArtistNameClick(e) {
@@ -172,6 +207,7 @@ class Sidebar extends React.Component {
             <LikedSongs
               likedSongsList={this.state.likedSongsList}
               count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
+              numberConversion={this.numberConversion.bind(this)}
             />
           </div>
         </ArticleLiked>

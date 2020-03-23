@@ -56,7 +56,7 @@ const Ul = styled.span`
 
 
 
-const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
+const LikedSongs = ({likedSongsList, count, onArtistNameClick, numberConversion}) => (
 
   <div>
     <MoreStyling>
@@ -82,6 +82,7 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
             location={likedSong.location}
             artist_pic={likedSong.artist_pic}
             onArtistNameClick={onArtistNameClick}
+            numberConversion={numberConversion}
           />
 
         )}
