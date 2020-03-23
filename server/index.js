@@ -112,6 +112,8 @@ app.post('/user/likes', function(req, res) {
 
 
 // listen for reqs
-app.listen(PORT, () => {
-  console.log(`Server listening in on port ${PORT}`);
-})
+// app.listen(PORT, () => {
+//   console.log(`Server listening in on port ${PORT}`);
+// })
+
+module.exports = app;

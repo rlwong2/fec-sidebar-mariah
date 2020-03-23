@@ -22,6 +22,7 @@
     "server": "nodemon server/index.js",
     "build": "webpack --mode production --watch",
     "test": "jest",
+    "test:watch": "jest --watch",
     "testclient": "__test__/App.test.js",
     "testserver": " __test__/index.test.js"
   },

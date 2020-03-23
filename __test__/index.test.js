@@ -1,4 +1,4 @@
-const server = require('../server/index.js');
+const app = require('../server/index.js');
 const request = require('supertest');
 
 var testServer;
@@ -15,7 +15,7 @@ describe('Checking all get requests', () => {
 
   // Set up server to test
   beforeAll((done) => {
-    testServer = server.listen(4444, () => {
+    testServer = app.listen(4444, () => {
       global.agent = request.agent(testServer);
       done();
     });
@@ -27,9 +27,8 @@ describe('Checking all get requests', () => {
 
 
   test('random artist endpoint responds with a random artist name', async (done) => {
-    const res = await request(server).get('/artist');
-
-    expect(res.statusCode.toBe(200));
+    const res = await request(app).get('/artist');
+    expect(res.status).toBe(200);
     expect(res.body).toBeDefined();
     done();
 
@@ -37,18 +36,16 @@ describe('Checking all get requests', () => {
 
   test('specific artist endpoint responds with the actual artist', async (done) => {
     var name = 'Snool_Snool'
-    const res = await request(server).get(`/artist/?name=Snool_Snool`);
-
-    expect(res.statusCode.toBe(200));
+    const res = await request(app).get(`/artist/?name=Snool_Snool`);
+    expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('name', name);
     done();
   })
 
   test('if artist cannot be found in the database on specific art req, return error', async (done) => {
     var name = 'A nonexistant artist';
-
-    const res = await request(server).get(`/artist/?name=nonexistantartist`)
-    expect(res.statusCode.toBe(404));
+    const res = await request(app).get(`/artist/?name=nonexistantartist`);
+    expect(res.status).toBe(404);
     done();
   })
 
