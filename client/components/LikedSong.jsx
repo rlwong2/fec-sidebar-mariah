@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const Li = styled.li`
   padding: 5px 0;
   display: list-item;
-  text-align: -webkit-match-parent;
   list-style: none;
   margin: 0;
 `;
@@ -30,8 +29,7 @@ const AlbumArtDiv = styled.span`
 `;
 
 const AlbumArtSpan = styled.span`
-  display: inline-block;
-  background: transparent 50%/contain no-repeat;
+
   margin-right: 4px;
   padding: 5px 6px;
   width: 50px;
@@ -47,9 +45,9 @@ const MediaInfoDiv = styled.span`
 `;
 
 const AlbumImage = styled.img`
-    width: 50px;
-    height: 50px;
-    opacity: 1;
+  width: 50px;
+  height: 50px;
+  opacity: 1;
 `;
 
 const SongArtist = styled.div`
@@ -58,36 +56,44 @@ const SongArtist = styled.div`
   font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   font-weight: 400;
   word-wrap: break-word;
-  display: flex;
+
   flex: 1;
   min-width: 0;
 }
 `;
 
 const ArtistDiv = styled.div`
-  font-weight: 100;
-  color: #999;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  word-break: normal;
-  cursor: pointer;
+overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: normal;
+        font-weight: 100;
+    color: #999;
+    display: block;
+    list-style: none;
+line-height: 1;
+    margin: 0 0 2px;
 `;
 
 const ArtistNameSpan = styled.span`
-    line-height: 1;
-    margin-bottom: 2px;
-    text-decoration: none;
+  font-weight: 100;
+  line-height: 1;
+  margin-bottom: 2px;
+  cursor: pointer;
 `;
 
 const SongNameDiv = styled.div`
   height: 1.3em;
-  float: left;
+
   text-decoration: none;
   color: #333;
+  display:block;
   max-width: 100%;
-    font-weight: 100;
-    box-sizing: border-box;
+  font-weight: 100;
+  box-sizing: border-box;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: normal;
 `;
 
 const SmallUl = styled.ul`
@@ -96,13 +102,13 @@ const SmallUl = styled.ul`
     flex-wrap: wrap;
     justify-content: flex-start;
     list-style: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     margin-block-start: 0px;
     margin-block-end: 0px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
+
 
 `;
 
