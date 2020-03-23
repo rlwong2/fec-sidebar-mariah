@@ -8,36 +8,14 @@ var db = require('../db/index.js');
 var seedSong = require('./seedSong.js');
 var seedArtist = require('./seedArtist.js');
 
-var count = 0;
-
-// fakeData.fakeNames.forEach(function(name, index) {
-//   seedArtists.createArtist(name);
-
-// });
-
-
-// //Promisify counter. Makes async functions go in order in for-loop.
-// var results = [];
 
 // Create 100 artists
 for (var j = 0; j < 100; j ++) {
-
   // create a fake artist first
   seedArtist.createArtist(j);
-
 }
 
-// Promise.all(results)
-//   .then(function() {
-//     console.log('Starting to write songs');
-//     for (var k = 10; k > 0; k--) {
-//       seedSong.findArtist();
-//       console.log('K value: ' + k);
-//     }
-//   });
-
 var makeSongs = function() {
-  console.log('startingtocreatesongs ============');
   for (var k = 100; k > 0; k--) {
     seedSong.findArtist();
     console.log('K value: ' + k);

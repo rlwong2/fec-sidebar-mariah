@@ -11,8 +11,6 @@ var generateSong = function(artistName) {
   var index = Math.floor(Math.random() * 100);
   var fakeSongName = fakeData.fakeSongs[index];
 
-  console.log('check 154')
-
   //////// Generate random Location
   var city = faker.address.city();
   var country = faker.address.country();
@@ -30,7 +28,6 @@ var generateSong = function(artistName) {
   var fakeReposts = Math.ceil(fakeLikes / (20 * (Math.random() * 3)));
   var fakeComments = Math.ceil(fakeReposts / ((Math.random() * 5 + .5)));
 
-  console.log('echeck 33')
   // Create new liked song in database
   db.SongLike.create({
     song_name: fakeSongName,
@@ -58,13 +55,12 @@ module.exports.findArtist = function() {
     order: Sequelize.literal('rand()')
   })
     .then(function (artist) {
-      console.log(artist.name + 'artist has been found, trying to make song')
+      console.log(artist.name + 'artist has been found, trying to make song');
       artistName = artist.name;
-      console.log(typeof generateSong)
       return generateSong(artistName);
     })
     .then(function(song) {
-      console.log('Song has been created')
+      console.log('Song has been created');
     })
     .catch(function (err) {
       console.log('Could not find artist in database');

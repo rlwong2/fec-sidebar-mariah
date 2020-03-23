@@ -15,12 +15,12 @@ module.exports.createArtist = function(j) {
   // What sentences
   var index = Math.floor(Math.random() * (words.length - 7));
 
+  // Creates artist about text.
   while (random > 0) {
     fakeAbout += words[index] + '. ';
     index ++;
     random --;
   }
-
 
   // Generate random amount of social links
   var numLinks = Math.ceil(Math.random() * 4);
@@ -60,7 +60,7 @@ module.exports.createArtist = function(j) {
       var created = result[1];
 
       if (!created) {
-        console.log('artist already exists')
+        console.log('artist already exists');
       } else {
         console.log('Success creating new artist');
       }
