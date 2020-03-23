@@ -9,7 +9,7 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick}) => (
   <div>
     <span className='LIKEDSONGCLASS'>
       <span> ♡
-        <h3 className='LIKEDSONGSNUMBER'>
+        <h3 onClick={onArtistNameClick}className='LIKEDSONGSNUMBER'>
           {count} likes </h3>
       </span>
     </span>
