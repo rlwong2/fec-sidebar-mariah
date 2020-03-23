@@ -1,8 +1,8 @@
 import React from 'react';
 
-//import styled from 'styled-components';
+import styled from 'styled-components';
 
-const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic}) => (
+const LikedSong = ({likedSong, user, song_name, artist_name, plays, likes, reposts, comments, album_art, location, artist_pic, onArtistNameClick}) => (
   <li className='INDIVIDUALLIKEDSONGS'>
     <div className='CONTENTSOFLIKEDSONG'>
       <span className='ALBUMART'>{album_art}</span>

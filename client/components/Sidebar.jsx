@@ -78,7 +78,6 @@ class Sidebar extends React.Component {
   // }
 
 
-
   ///////////////// STYLED COMPONENTS ////
 
   //////////////////////////
