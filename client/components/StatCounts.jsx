@@ -12,6 +12,10 @@ const Td = styled.td`
   vertical-align: inherit;
 `;
 
+const IndentedDiv = styled.div`
+  margin-left: 10px;
+`;
+
 const H3 = styled.h3`
   line-height: .9;
   padding: 5px 0 3px;
@@ -37,13 +41,14 @@ const StatNumDiv = styled.div`
 
 const StatCounts = (props) => (
   <Td className='stat-column'>
-    <H3 class="stat-title">
-      {props.statTitle}
-    </H3>
-    <StatNumDiv class='stat-num'>
-      {props.statNum}
-    </StatNumDiv>
-
+    <IndentedDiv>
+      <H3 class="stat-title">
+        {props.statTitle}
+      </H3>
+      <StatNumDiv class='stat-num'>
+        {props.statNum}
+      </StatNumDiv>
+    </IndentedDiv>
   </Td>
 );
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { FaInstagram, FaTwitter, FaFacebookF, FaConnectdevelop } from 'react-icons/fa';
+
 const Li = styled.li`
   margin-bottom: 5px;
   display: list-item;
@@ -15,10 +17,36 @@ const A = styled.a`
   cursor: pointer;
 `;
 
-const Link = ({link, linkName, icon}) => (
+var pickIcon = function(index) {
+  if (index === 0) {
+    return <FaInstagram />
+  }
+  if (index === 1) {
+    return <FaTwitter/>
+  }
+  if (index === 2) {
+    return <FaFacebookF/>
+  }
+  if (index === 3) {
+    return <FaConnectdevelop/>
+  }
+}
+
+const Link = ({link, linkName, index}) => (
   <li>
-    <A href={link} target="_blank" class="profile-social-logo">{icon + ' ' + linkName}</A>
+    <A href={link} target="_blank" class="profile-social-logo">
+      <span>
+        {pickIcon(index)}
+      </span>
+      <span>
+        {' ' + linkName}
+      </span></A>
   </li>
 );
 
 export default Link;
+
+
+{/* <li>
+  <A href={link} target="_blank" class="profile-social-logo">{icon + ' ' + linkName}</A>
+</li> */}

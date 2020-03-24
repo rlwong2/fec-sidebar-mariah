@@ -28,7 +28,7 @@ const Links = ({links}) => (
       <Link
         link={link}
         linkName={array[index]}
-        icon={iconArray[index]}
+        index={index}
       />
     )}
   </Ul>

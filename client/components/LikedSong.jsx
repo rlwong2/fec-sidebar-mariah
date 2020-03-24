@@ -2,6 +2,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { TiHeart, TiArrowLoop } from 'react-icons/ti';
+import { FaShareSquare } from 'react-icons/fa';
+import { MdPlaylistPlay, MdPlayArrow } from 'react-icons/md';
+import { GoThreeBars } from 'react-icons/go';
+import { IoIosText} from 'react-icons/io';
 
 const Li = styled.li`
   padding: 5px 0;
@@ -160,10 +165,10 @@ const LikedSong = ({song_name, artist_name, plays, likes, reposts, comments, alb
         </SongArtist>
 
         <SmallUl className='MORESTATS'>
-          <SmallLi><SmallSpan>► {numberConversion(plays)}</SmallSpan></SmallLi>
-          <SmallLi><SmallSpan>❤ {numberConversion(likes)} </SmallSpan></SmallLi>
-          <SmallLi><SmallSpan>∞ {numberConversion(reposts)} </SmallSpan></SmallLi>
-          <SmallLi><SmallSpan>❗ {numberConversion(comments)} </SmallSpan></SmallLi>
+          <SmallLi><SmallSpan><MdPlayArrow />{numberConversion(plays)}</SmallSpan></SmallLi>
+          <SmallLi><SmallSpan><TiHeart /> {numberConversion(likes)} </SmallSpan></SmallLi>
+          <SmallLi><SmallSpan><TiArrowLoop /> {numberConversion(reposts)} </SmallSpan></SmallLi>
+          <SmallLi><SmallSpan><IoIosText/> {numberConversion(comments)} </SmallSpan></SmallLi>
         </SmallUl>
       </MediaInfoDiv>
     </SongDiv>
