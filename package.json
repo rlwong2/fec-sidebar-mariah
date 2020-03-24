@@ -47,12 +47,13 @@
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "react": "^16.13.0",
+    "react-detectable-overflow": "^0.3.1",
     "react-dom": "^16.13.0",
     "react-icons": "^3.9.0",
     "react-test-renderer": "^16.13.1",
+    "request": "^2.81.0",
     "sequelize": "^5.21.5",
-    "styled-components": "^5.0.1",
-    "request": "^2.81.0"
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
