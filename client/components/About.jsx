@@ -42,25 +42,29 @@ class About extends React.Component {
     super(props);
     this.outerRef = React.createRef();
     this.state = {
+      height: 0,
       fullView: false,
       overFlow: false
     };
 
   }
 
-  componentDidMount() {
+  checkOverflow() {
     setTimeout(() => {
-      var that = this;
-      console.log('HEIGHT: ' + this.outerRef.current.clientHeight)
-
-      if (this.outerRef.current.clientHeight > 85) {
-        that.setState({
+      this.setState({
+        height: this.outerRef.current.clientHeight
+      });
+      if (this.state.height > 85) {
+        this.setState({
           overFlow: true
-        })
+        });
       }
-    }, 150)
+    }, 120);
   }
 
+  componentDidMount() {
+    this.checkOverflow();
+  }
 
   render() {
     return (
@@ -115,8 +119,6 @@ class About extends React.Component {
 
           }
         </div>
-
-
       </div>
     );
   }
