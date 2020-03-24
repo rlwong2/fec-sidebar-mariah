@@ -6,7 +6,67 @@ import Links from './Links.jsx';
 import About from './About.jsx';
 import LikedSongs from './LikedSongs.jsx';
 
-//import styled from 'styled-components';
+import styled from 'styled-components';
+
+///////////////// STYLED COMPONENTS ////
+const SidebarContainer = styled.div`
+  top: 401px;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  display: block;
+  color: #333;
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
+
+`;
+
+const StatTable = styled.table`
+  width: 100%;
+  margin-bottom: 14px;
+  font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  font-weight: 100;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  border-color: grey;
+`;
+
+const Tbody = styled.tbody`
+  display: table-row-group;
+  vertical-alight: middle;
+  border-color: inherit;
+`;
+
+const Tr = styled.tr`
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+`;
+
+const AboutDiv = styled.div`
+  margin-bottom: 20px;
+  display: block;
+  font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
+  color: #333;
+`;
+
+const LinksDiv = styled.div`
+  font-size: 12px;
+  display: block;
+`;
+
+const ArticleLiked = styled.div`
+  margin-bottom: 20px;
+  transition: all .2s linear;
+  display: block;
+}
+`;
+
+//////////////////////////asdfas
+
+
 
 class Sidebar extends React.Component {
 
@@ -30,20 +90,50 @@ class Sidebar extends React.Component {
   formatData(results, that) {
     var artist = results.artist;
     console.log(artist.name);
+    console.log(artist.track_count)
+    console.log(artist.follower_count)
+    console.log(artist.following_count)
+    // Change numbers into something easy to read
+    var trackCount = that.numberConversion(artist.track_count);
+    var followerCount = that.numberConversion(artist.follower_count);
+    var followingCount = that.numberConversion(artist.following_count);
 
     that.setState({
       artistName: artist.name,
-      track_count: artist.track_count,
-      follower_count: artist.follower_count,
-      following_count: artist.following_count,
+      track_count: trackCount,
+      follower_count: followerCount,
+      following_count: followingCount,
       about: artist.about.split('. '),
       links: artist.links.split(' '),
       liked_songs: artist.liked_songs,
       likedSongsList: results.likedSongs
     });
 
-    console.log(this.state)
+    console.log(this.state);
   }
+
+  // Make numbers prettier to read
+  numberConversion(number) {
+    console.log('ASfhaksf' + number)
+    if (!number) {
+      return number;
+    }
+
+    if (number > 9999 && number < 1000000) {
+      var stringNum = number.toString();
+      var firstThree = stringNum.slice(0, -3);
+      firstThree += 'K';
+      number = firstThree;
+    }
+    if (number > 999999) {
+      var stringNum = number.toString();
+      var firstThree = stringNum.slice(0, -6);
+      firstThree += 'M';
+      number = firstThree;
+    }
+    return number;
+  }
+
 
   // Create onclick function for artist nadfaame to load that artist
   onArtistNameClick(e) {
@@ -81,51 +171,49 @@ class Sidebar extends React.Component {
   // }
 
 
-  ///////////////// STYLED COMPONENTS ////
-
-  //////////////////////////
 
   render() {
     return (
-      <div id='sidebar-right' style={{top: '401px'}}>
+      <SidebarContainer id='sidebar-right'>
 
         <article id="stats">
-          <table id="links">
-            <tbody>
-              <tr>
+          <StatTable id="links">
+            <Tbody>
+              <Tr>
 
                 <StatCounts statTitle='followers' statNum={this.state.follower_count} />
                 <StatCounts statTitle='following' statNum={this.state.following_count} />
                 <StatCounts statTitle='tracks' statNum={this.state.track_count} />
-              </tr>
+              </Tr>
 
-            </tbody>
-          </table>
+            </Tbody>
+          </StatTable>
         </article>
 
         <article>
-          <div id="about">
+          <AboutDiv id="about">
             <About about={this.state.about}/>
-          </div>
+          </AboutDiv>
         </article>
         <article>
-          <div id="weblinks">
+          <LinksDiv id="weblinks">
             <Links
               links={this.state.links}
             />
-          </div>
+          </LinksDiv>
         </article>
-        <article>
+        <ArticleLiked>
           <div id="likedsongs">
             <LikedSongs
               likedSongsList={this.state.likedSongsList}
               count={this.state.liked_songs} onArtistNameClick={this.onArtistNameClick.bind(this)}
+              numberConversion={this.numberConversion.bind(this)}
             />
           </div>
-        </article>
+        </ArticleLiked>
 
 
-      </div>
+      </SidebarContainer>
     );
   }
 }
