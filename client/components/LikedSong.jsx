@@ -3,9 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { TiHeart, TiArrowLoop } from 'react-icons/ti';
-import { FaShareSquare } from 'react-icons/fa';
-import { MdPlaylistPlay, MdPlayArrow } from 'react-icons/md';
-import { GoThreeBars } from 'react-icons/go';
+import { MdPlayArrow } from 'react-icons/md';
 import { IoIosText} from 'react-icons/io';
 
 const Li = styled.li`

@@ -14,11 +14,11 @@ const SidebarContainer = styled.div`
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   display: block;
   color: #333;
-      position: absolute;
-    top: 30px;
-    bottom: 0;
-    right: 0;
-    width: 300px;
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  right: 0;
+  width: 300px;
 
 `;
 
@@ -40,9 +40,9 @@ const Tbody = styled.tbody`
 `;
 
 const Tr = styled.tr`
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
 `;
 
 const AboutDiv = styled.div`

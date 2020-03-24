@@ -2,6 +2,7 @@ import React from 'react';
 import LikedSong from './LikedSong.jsx';
 
 import styled from 'styled-components';
+import { TiHeart } from 'react-icons/ti';
 
 const MoreStyling = styled.div`
   height: 30px;
@@ -20,12 +21,11 @@ const H3 = styled.h3`
 const Heart = styled.span`
   width: 21px;
   margin-right: 4px;
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiI…AxNTMpIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIi8+DQogICAgPC9nPg0KPC9zdmc+DQo=);
   background-size: 20px 20px;
   display: inline-block;
   vertical-align: top;
   background-repeat: no-repeat;
-  background-position: 50%;
+
 `;
 
 // INSERT heart icon in the background image url above!
@@ -50,7 +50,6 @@ const Ul = styled.span`
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
     display: block;
 `;
 
@@ -61,9 +60,8 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick, numberConversion}
   <div>
     <MoreStyling>
       <H3 className='LIKEDSONGCLASS'>
-        <Heart></Heart>
         <span onClick={onArtistNameClick}className='LIKEDSONGSNUMBER'>
-          {count} likes
+          <TiHeart/> {count} likes
         </span>
       </H3>
     </MoreStyling>

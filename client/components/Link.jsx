@@ -17,20 +17,21 @@ const A = styled.a`
   cursor: pointer;
 `;
 
+// Picks a social media icon based on what number link it
 var pickIcon = function(index) {
   if (index === 0) {
-    return <FaInstagram />
+    return <FaInstagram />;
   }
   if (index === 1) {
-    return <FaTwitter/>
+    return <FaTwitter/>;
   }
   if (index === 2) {
-    return <FaFacebookF/>
+    return <FaFacebookF/>;
   }
   if (index === 3) {
-    return <FaConnectdevelop/>
+    return <FaConnectdevelop/>;
   }
-}
+};
 
 const Link = ({link, linkName, index}) => (
   <li>
