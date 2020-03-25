@@ -46,8 +46,3 @@ const Link = ({link, linkName, index}) => (
 );
 
 export default Link;
-
-
-{/* <li>
-  <A href={link} target="_blank" class="profile-social-logo">{icon + ' ' + linkName}</A>
-</li> */}

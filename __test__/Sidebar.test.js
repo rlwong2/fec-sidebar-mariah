@@ -7,7 +7,9 @@ import renderer from 'react-test-renderer';
 
 import axios from 'axios';
 import {configure, shallow, mount, render} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-15.4';
+import Adapter from 'enzyme-adapter-react-16';
+
+jest.mock('axios');
 
 configure({adapter: new Adapter()});
 
@@ -17,41 +19,39 @@ test('Four is not divisible by three', () => {
   expect( 4 % 3 !== 0).toBe(true);
 });
 
-// // Test get requests from App
-// describe('Testing get requests from Sidebar App', () => {
-//   beforeAll(() => {
-//     global.fetch = jest.fn();
-//     // global or window, whichever one works
-//   });
+// Test get requests from App
+describe('Sidebar component', () => {
+  // beforeAll(() => {
+  //   global.fetch = jest.fn();
+  //   // global or window, whichever one works
+  // });
 
-//   let wrapper;
+  // let wrapper;
 
-//   beforeEach(() => {
-//     wrapper = shallow(<Sidebar />);
-//   });//, {disableLifecycleMethods: true}
+  // beforeEach(() => {
+  //   wrapper = shallow(<Sidebar />);
+  // });//, {disableLifecycleMethods: true}
 
 
-//   afterEach(() => {
-//     wrapper.unmount();
-//   });
-//   test('Get request should have been called upon reload', (done) => {
+  // afterEach(() => {
+  //   wrapper.unmount();
+  // });
+  describe('When rendered', () => {
+    it('should fetch an object with artist and liked songs', () => {
 
-//     // Apply spy to componentwillmount
+      const spyMount = jest.spyOn(axios, 'get');
+      const SidebarInstance = shallow(
+        <Sidebar/>
+      );
 
-//     const spyMount = jest.spyOn(Sidebar.prototype, 'componentWillMount');
+      expect(spyMount).toBeCalled();
 
-//     // More complicated stuff for testing body of request.
-//     axios('/artist')
-//       .then(res=> res.json());
-//     // Call componentWillMount
+    });
+    // Apply spy to componentwillmount
 
-//     const didMount = wrapper.instance().componentWillMount;
+  });
 
-//     expect(spyMount).toHaveBeenCalled();
-
-//   });
-
-// });
+});
 
 
 // Snapshot test for sidebar rendering.
