@@ -1,3 +1,7 @@
+CREATE DATABASE sidebar;
+
+use sidebar;
+
 create table likedsongs (
   id int not null auto_increment,
   song_name varchar(40) not null,

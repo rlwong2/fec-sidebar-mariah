@@ -2,7 +2,7 @@ const path = require("path");
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
-  entry: "./client/app.js",
+  entry: "./client/sidebarApp.js",
   output: {
     filename: "bundle.js",
     path: DIST_DIR
