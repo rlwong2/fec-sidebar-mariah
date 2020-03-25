@@ -106,11 +106,11 @@ class About extends React.Component {
             <div>
               {this.state.fullView
                 ? <A className="collapse" onClick={() => this.setState({ fullView: false })}>
-                  Show less
+                  Show less <span style={{ 'font-size': '7px' }}>▲</span>
                 </A>
                 :
                 <A className="collapse" onClick={() => this.setState({ fullView: true })}>
-                  Show more
+                  Show more <span style={{'font-size': '7px'}}>▼</span>
                 </A>
               }
             </div>

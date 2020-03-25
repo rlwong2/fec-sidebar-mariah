@@ -89,10 +89,6 @@ class Sidebar extends React.Component {
   // Reformat get data
   formatData(results, that) {
     var artist = results.artist;
-    console.log(artist.name);
-    console.log(artist.track_count)
-    console.log(artist.follower_count)
-    console.log(artist.following_count)
     // Change numbers into something easy to read
     var trackCount = that.numberConversion(artist.track_count);
     var followerCount = that.numberConversion(artist.follower_count);
@@ -108,13 +104,10 @@ class Sidebar extends React.Component {
       liked_songs: artist.liked_songs,
       likedSongsList: results.likedSongs
     });
-
-    console.log(this.state);
   }
 
   // Make numbers prettier to read
   numberConversion(number) {
-    console.log('ASfhaksf' + number)
     if (!number) {
       return number;
     }
