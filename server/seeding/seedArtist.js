@@ -60,7 +60,7 @@ module.exports.createArtist = function(j) {
       var created = result[1];
 
       if (!created) {
-        console.log('artist already exists');
+        console.log('Artist already exists');
       } else {
         console.log('Success creating new artist');
       }

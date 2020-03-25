@@ -16,8 +16,8 @@ for (var j = 0; j < 100; j ++) {
 }
 
 var makeSongs = function() {
-  for (var k = 100; k > 0; k--) {
-    seedSong.findArtist();
+  for (var k = 0; k < 100; k++) {
+    seedSong.findArtist(k);
     console.log('K value: ' + k);
   }
 };

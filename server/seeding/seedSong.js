@@ -5,11 +5,11 @@ var db = require('../db/index.js');
 var fakeData = require('./fakeData.js');
 
 
-var generateSong = function(artistName) {
+var generateSong = function(artistName, k) {
   //////// Get random song name
   // generate random index number
-  var index = Math.floor(Math.random() * 100);
-  var fakeSongName = fakeData.fakeSongs[index];
+
+  var fakeSongName = fakeData.fakeSongs[k];
 
   //////// Generate random Location
   var city = faker.address.city();
@@ -49,7 +49,7 @@ var generateSong = function(artistName) {
     });
 };
 
-module.exports.findArtist = function() {
+module.exports.findArtist = function(k) {
 
   db.Artist.findOne({
     order: Sequelize.literal('rand()')
@@ -57,7 +57,7 @@ module.exports.findArtist = function() {
     .then(function (artist) {
       console.log(artist.name + 'artist has been found, trying to make song');
       artistName = artist.name;
-      return generateSong(artistName);
+      return generateSong(artistName, k);
     })
     .then(function(song) {
       console.log('Song has been created');
