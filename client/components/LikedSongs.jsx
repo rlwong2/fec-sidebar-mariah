@@ -60,7 +60,7 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick, numberConversion}
   <div>
     <MoreStyling>
       <H3 className='LIKEDSONGCLASS'>
-        <span onClick={onArtistNameClick}className='LIKEDSONGSNUMBER'>
+        <span className='LIKEDSONGSNUMBER'>
           <TiHeart/> {count} likes
         </span>
       </H3>

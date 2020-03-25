@@ -2,13 +2,9 @@ import React from 'react';
 import Link from './Link.jsx';
 import styled from 'styled-components';
 
-import { FaInstagram, FaTwitter, FaFacebookF, FaConnectdevelop} from 'react-icons/fa';
 // Website names
-
 var array = ['Instagram', 'Twitter', 'Facebook', 'Website'];
 
-//put social media icons here
-var iconArray = ['➜', '♖', '∮', '◐' ];
 
 const Ul = styled.ul`
   margin-block-start: 1em;
