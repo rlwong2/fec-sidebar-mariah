@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
 // Will put db name here at some point. Spudiferous is my test db
-var dbName = 'spudiferous';
+var dbName = 'sidebar';
 var username = 'root';
 var password = '';
 
