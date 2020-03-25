@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Soundcloud</title>
+  </head>
+  <body>
+    <div id="bigMedia"></div>
+    <div id="comments"></div>
+    <div id="sidebar"></div>
+
+    <script src=""></script>
+
+
+    <script>
+      ReactDOM.render(React.createElement(BigMedia), document.getElementById("bigMedia"));
+      ReactDOM.render(React.createElement(Comments), document.getElementById("comments"));
+      ReactDOM.render(React.createElement(Sidebar), document.getElementById("sidebar"));
+    </script>
+  </body>
+</html>
