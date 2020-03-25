@@ -156,7 +156,6 @@ exports[`Components render on mount 1`] = `
           >
             <span
               className="LIKEDSONGSNUMBER"
-              onClick={[Function]}
             >
               <svg
                 baseProfile="tiny"

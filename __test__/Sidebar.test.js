@@ -21,21 +21,6 @@ test('Four is not divisible by three', () => {
 
 // Test get requests from App
 describe('Sidebar component', () => {
-  // beforeAll(() => {
-  //   global.fetch = jest.fn();
-  //   // global or window, whichever one works
-  // });
-
-  // let wrapper;
-
-  // beforeEach(() => {
-  //   wrapper = shallow(<Sidebar />);
-  // });//, {disableLifecycleMethods: true}
-
-
-  // afterEach(() => {
-  //   wrapper.unmount();
-  // });
   describe('When rendered', () => {
     it('should fetch an object with artist and liked songs', () => {
 
@@ -45,14 +30,24 @@ describe('Sidebar component', () => {
       );
 
       expect(spyMount).toBeCalled();
-
     });
-    // Apply spy to componentwillmount
-
   });
-
 });
 
+// Test get requests from LikedSong
+describe('Sidebar component', () => {
+  describe('When clicked', () => {
+    it('should run get request for an object with artist and liked songs', () => {
+      const testfunc = function() {console.log('hey')}
+
+      const spyMount = jest.spyOn(axios, 'get');
+      const LikedSongWrapper = shallow(<LikedSong onClick={spyMount} e={{ currentTarget: { textContent: 'Pettifogger_Gastromancy' }}} numberConversion={testfunc}/>);
+
+      LikedSongWrapper.find('.ARTISTNAME').simulate('click');
+      expect(spyMount).toBeCalled();
+    });
+  });
+});
 
 // Snapshot test for sidebar rendering.
 test('Components render on mount', () => {
@@ -60,23 +55,3 @@ test('Components render on mount', () => {
   var component = sidebar.toJSON();
   expect(sidebar).toMatchSnapshot();
 });
-
-// // Displays the correct amount of links
-// test('Links render the correct amount', () => {
-
-//   const links = renderer.create(<Links links='onelink twolink threelink'/>);
-//   var test = links.toJSON();
-//   //Count amount of elements have id "sociallinks"
-//   //Compare with expected.
-//   expect(test).toMatchSnapshot();
-// });
-
-
-// // Hover over artist name test / Work in progress test.
-// test('Displays artist info over artist name hover', () => {
-//   const artistName = shallow(<LikedSong artist_name='TEST'/>);
-
-//   artistName.find('input').simulate('change');
-
-//   expect(artistName.text()).toEqual('hover');
-// });
