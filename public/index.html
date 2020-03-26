@@ -8,21 +8,21 @@
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-    <div id="bigmedia"></div>
-    <div id="comments"></div>
+    <div id="MediaFeed"></div>
+    <div id="CommentsFeedModule"></div>
     <div id="sidebar"></div>
     <div id="footer"></div>
 
-    <!-- <script src="http://localhost:3306/main.js"></script> -->
     <script src="http://localhost:3005/bundle.js"></script>
     <script src="http://localhost:4444/bundle.js"></script>
+    <script src="http://localhost:3306/main.js"></script>
     <script src="http://localhost:4000/bundle.js"></script>
     <script>
-      // ReactDOM.render(React.createElement(BigMedia), document.getElementById("bigMedia"));
-      // ReactDOM.render(React.createElement(MediaFeed), document.getElementById("bigmedia"));
-      ReactDOM.render(React.createElement(CommentsFeed), document.getElementById("comments"));
-      ReactDOM.render(React.createElement(Sidebar), document.getElementById("sidebar"));
-      ReactDOM.render(React.createElement(MusicPlayerOnFooter), document.getElementById("footer"));
+
+      ReactDOM.render(React.createElement(Sidebar, {id: 2}), document.getElementById("sidebar"));
+      ReactDOM.render(React.createElement(MediaFeed, {id: 4}), document.getElementById("MediaFeed"));
+      ReactDOM.render(React.createElement(CommentsFeedModule, {id: 1}), document.getElementById("CommentsFeedModule"));
+      ReactDOM.render(React.createElement(MusicPlayerOnFooter, {id: 3}), document.getElementById("footer"));
     </script>
   </body>
 </html>
