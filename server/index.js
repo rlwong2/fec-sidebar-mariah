@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var Sequelize = require('sequelize');
-var cors = require('cors')
+var cors = require('cors');
 var path = require('path');
 var PORT = 4444;
 // import artist model methods
