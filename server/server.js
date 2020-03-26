@@ -1,16 +1,16 @@
-var express = require('express');
-const morgan = require('morgan')
+const express = require('express');
+
+// const cors = require('cors')
 const path = require('path')
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3400;
 
-var server = express();
+let app = express();
 
-server.use(morgan('dev'));
-server.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.json());
+app.use(express.static(__dirname + '/../public'));
 
+// app.use('/', express.static(path.join(__dirname, '../client/dist')));
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`server running at: http://localhost:${port}`);
 })
-
-
