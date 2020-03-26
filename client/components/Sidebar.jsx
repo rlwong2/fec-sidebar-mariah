@@ -134,7 +134,7 @@ class Sidebar extends React.Component {
     var that = this;
     console.log('hey');
     // axios.get random artist
-    axios.get(`/artistname/?name=${e.currentTarget.textContent}`)
+    axios.get(`http://localhost:4444/artistname/?name=${e.currentTarget.textContent}`)
       .then(function (results) {
         that.formatData(results.data, that);
       })
@@ -149,7 +149,7 @@ class Sidebar extends React.Component {
     // get req here
     var that = this;
     // axios.get random artist
-    axios.get(`/artist`)
+    axios.get(`http://localhost:4444/artist`)
       .then(function(results) {
         that.formatData(results.data, that);
       })
