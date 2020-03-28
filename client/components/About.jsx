@@ -40,37 +40,28 @@ class About extends React.Component {
   constructor(props) {
 
     super(props);
-    this.outerRef = React.createRef();
+
     this.state = {
       height: 0,
-      fullView: false,
-      overFlow: false
+      fullView: false
     };
 
   }
 
-  checkOverflow() {
-    setTimeout(() => {
-      this.setState({
-        height: this.outerRef.current.clientHeight
-      });
-      if (this.state.height > 85) {
-        this.setState({
-          overFlow: true
-        });
-      }
-    }, 120);
-  }
 
-  componentDidMount() {
-    this.checkOverflow();
-  }
+  // componentDidMount() {
+  //   console.log('about did mount')
+  //   setTimeout(() => {
+  //     console.log('run setTimeoutcheck overflow')
+  //   this.props.checkOverflow(this);
+  //   }, 200);
+  // }
 
   render() {
     return (
       <div >
         <div>
-          <div ref={this.outerRef} style={{position: 'absolute', 'z-index': '-1'}}>
+          {/* <div ref={this.outerRef} style={{position: 'absolute', 'z-index': '-1'}}>
             <Invis >
               <AboutDiv2Big id="notCollapsed">
                 <div id="wrapper">
@@ -80,7 +71,7 @@ class About extends React.Component {
                 </div>
               </AboutDiv2Big>
             </Invis>
-          </div>
+          </div> */}
           {this.state.fullView
             ? <AboutDiv2Big id="collapsed">
               <div id="wrapper">
@@ -101,15 +92,15 @@ class About extends React.Component {
         </div>
 
         <div>
-          {this.state.overFlow
+          {this.props.overFlow
             ?
             <div>
               {this.state.fullView
-                ? <A className="collapse" onClick={() => this.setState({ fullView: false })}>
+                ? <A className="collapsebuttom" onClick={() => this.setState({ fullView: false })}>
                   Show less <span style={{ 'font-size': '7px' }}>▲</span>
                 </A>
                 :
-                <A className="collapse" onClick={() => this.setState({ fullView: true })}>
+                <A className="collapsebutton" onClick={() => this.setState({ fullView: true })}>
                   Show more <span style={{'font-size': '7px'}}>▼</span>
                 </A>
               }

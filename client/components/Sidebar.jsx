@@ -64,6 +64,18 @@ const ArticleLiked = styled.div`
 }
 `;
 
+const Invis = styled.div`
+  opacity: .0;
+
+`;
+
+const AboutDiv2Big = styled.div`
+  margin-bottom: 20px;
+  max-height: none;
+
+  position: relative;
+  display: block;
+`;
 //////////////////////////asdfas
 
 
@@ -72,17 +84,18 @@ class Sidebar extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.outerRef = React.createRef();
     this.state = {
       artistName: '',
-
+      height: 0,
       links: [],
       about: [],
       follower_count: null,
       following_count: null,
       track_count: null,
       liked_songs: null,
-      likedSongsList: []
+      likedSongsList: [],
+      overFlow: false
     };
   }
 
@@ -93,7 +106,12 @@ class Sidebar extends React.Component {
     var trackCount = that.numberConversion(artist.track_count);
     var followerCount = that.numberConversion(artist.follower_count);
     var followingCount = that.numberConversion(artist.following_count);
+    console.log('formatdata')
 
+    // Run my height counter to run my checkOverflow function
+    this.checkOverflow()
+
+    // Set Sidebar state
     that.setState({
       artistName: artist.name,
       track_count: trackCount,
@@ -127,12 +145,31 @@ class Sidebar extends React.Component {
     return number;
   }
 
+  checkOverflow() {
+    // Set timeout so that it checks height after the html has been rendered. Have to do it this way because of styled components being not great.
+    setTimeout(() => {
+      console.log('checking overflow' + this.outerRef.current.clientHeight);
+      this.setState({
+        height: this.outerRef.current.clientHeight
+      });
 
+      console.log('HEIGHT: ' + this.state.height)
+      if (this.state.height > 100) {
+        this.setState({
+          overFlow: true
+        });
+      } else {
+        this.setState({
+          overFlow: false
+        })
+      }
+    }, 100);
+  }
   // Create onclick function for artist nadfaame to load that artist
   onArtistNameClick(e) {
     // get req here
     var that = this;
-    console.log('hey');
+
     // axios.get random artist
     axios.get(`http://localhost:4444/artistname/?name=${e.currentTarget.textContent}`)
       .then(function (results) {
@@ -145,8 +182,9 @@ class Sidebar extends React.Component {
 
 
   //send get req before component renders.
-  componentWillMount() {
+  componentDidMount() {
     // get req here
+    console.log('make refresh page req')
     var that = this;
     // axios.get random artist
     axios.get(`http://localhost:4444/artist`)
@@ -169,6 +207,18 @@ class Sidebar extends React.Component {
     return (
       <SidebarContainer id='sidebar-right'>
 
+        <div ref={this.outerRef} style={{ position: 'absolute', 'z-index': '-1' }}>
+          <Invis id="invisiblediv" >
+            <AboutDiv2Big id="notCollapsed">
+              <div id="wrapper">
+                <div id="truncated-description">
+                  {this.state.about.join('\n')}
+                </div>
+              </div>
+            </AboutDiv2Big>
+          </Invis>
+        </div>
+
         <article id="stats">
           <StatTable id="links">
             <Tbody>
@@ -185,7 +235,9 @@ class Sidebar extends React.Component {
 
         <article>
           <AboutDiv id="about">
-            <About about={this.state.about}/>
+            <About
+              about={this.state.about}
+              overFlow={this.state.overFlow}/>
           </AboutDiv>
         </article>
         <article>
