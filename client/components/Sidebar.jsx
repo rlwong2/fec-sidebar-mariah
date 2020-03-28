@@ -106,7 +106,6 @@ class Sidebar extends React.Component {
     var trackCount = that.numberConversion(artist.track_count);
     var followerCount = that.numberConversion(artist.follower_count);
     var followingCount = that.numberConversion(artist.following_count);
-    console.log('formatdata')
 
     // Run my height counter to run my checkOverflow function
     this.checkOverflow()
@@ -148,12 +147,9 @@ class Sidebar extends React.Component {
   checkOverflow() {
     // Set timeout so that it checks height after the html has been rendered. Have to do it this way because of styled components being not great.
     setTimeout(() => {
-      console.log('checking overflow' + this.outerRef.current.clientHeight);
       this.setState({
         height: this.outerRef.current.clientHeight
       });
-
-      console.log('HEIGHT: ' + this.state.height)
       if (this.state.height > 100) {
         this.setState({
           overFlow: true
@@ -184,7 +180,6 @@ class Sidebar extends React.Component {
   //send get req before component renders.
   componentDidMount() {
     // get req here
-    console.log('make refresh page req')
     var that = this;
     // axios.get random artist
     axios.get(`http://localhost:4444/artist`)
