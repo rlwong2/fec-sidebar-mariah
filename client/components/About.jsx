@@ -70,7 +70,7 @@ class About extends React.Component {
     return (
       <div >
         <div>
-          <div ref={this.outerRef} style={{position: 'absolute', 'z-index': '-1'}}>
+          <div ref={this.outerRef} style={{position: 'absolute', zIndex: '-1'}}>
             <Invis >
               <AboutDiv2Big id="notCollapsed">
                 <div id="wrapper">
@@ -106,11 +106,11 @@ class About extends React.Component {
             <div>
               {this.state.fullView
                 ? <A className="collapse" onClick={() => this.setState({ fullView: false })}>
-                  Show less <span style={{ 'font-size': '7px' }}>▲</span>
+                  Show less <span style={{ 'fontSize': '7px' }}>▲</span>
                 </A>
                 :
                 <A className="collapse" onClick={() => this.setState({ fullView: true })}>
-                  Show more <span style={{'font-size': '7px'}}>▼</span>
+                  Show more <span style={{'fontSize': '7px'}}>▼</span>
                 </A>
               }
             </div>

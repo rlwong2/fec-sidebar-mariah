@@ -35,7 +35,7 @@ var pickIcon = function(index) {
 
 const Link = ({link, linkName, index}) => (
   <li>
-    <A href={link} target="_blank" class="profile-social-logo">
+    <A href={link} target="_blank" className="profile-social-logo">
       <span>
         {pickIcon(index)}
       </span>

@@ -25,6 +25,7 @@ const Links = ({links}) => (
         link={link}
         linkName={array[index]}
         index={index}
+        key={index}
       />
     )}
   </Ul>

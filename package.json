@@ -26,7 +26,9 @@
     "test:watch": "jest --watch",
     "testclient": "__test__/App.test.js",
     "testserver": " __test__/index.test.js",
-    "seed": "node server/seeding/seed.js"
+    "seed": "node server/seeding/seed.js",
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch"
   },
   "dependencies": {
     "axios": "^0.19.2",

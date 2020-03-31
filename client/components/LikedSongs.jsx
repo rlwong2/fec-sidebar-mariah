@@ -81,6 +81,7 @@ const LikedSongs = ({likedSongsList, count, onArtistNameClick, numberConversion}
             artist_pic={likedSong.artist_pic}
             onArtistNameClick={onArtistNameClick}
             numberConversion={numberConversion}
+            key={likedSong.id}
           />
 
         )}

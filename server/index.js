@@ -16,10 +16,16 @@ var bodyParser = require('body-parser');
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser());
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 /////// GET/POST req here ////
 
 // Get a random artist
 app.get('/artist', function(req, res) {
+  console.log('Mariah GET /artist')
 
   var artistInfo;
 

@@ -10,16 +10,9 @@ import styled from 'styled-components';
 
 ///////////////// STYLED COMPONENTS ////
 const SidebarContainer = styled.div`
-  top: 401px;
   font: 12px/1.4 Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;
   display: block;
   color: #333;
-  position: absolute;
-  top: 30px;
-  bottom: 0;
-  right: 0;
-  width: 300px;
-
 `;
 
 const StatTable = styled.table`
@@ -134,7 +127,7 @@ class Sidebar extends React.Component {
     var that = this;
     console.log('hey');
     // axios.get random artist
-    axios.get(`/artistname/?name=${e.currentTarget.textContent}`)
+    axios.get(`http://localhost:4444/artistname/?name=${e.currentTarget.textContent}`)
       .then(function (results) {
         that.formatData(results.data, that);
       })
@@ -149,7 +142,7 @@ class Sidebar extends React.Component {
     // get req here
     var that = this;
     // axios.get random artist
-    axios.get(`/artist`)
+    axios.get(`http://localhost:4444/artist`)
       .then(function(results) {
         that.formatData(results.data, that);
       })

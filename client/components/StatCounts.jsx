@@ -42,10 +42,10 @@ const StatNumDiv = styled.div`
 const StatCounts = (props) => (
   <Td className='stat-column'>
     <IndentedDiv>
-      <H3 class="stat-title">
+      <H3 className="stat-title">
         {props.statTitle}
       </H3>
-      <StatNumDiv class='stat-num'>
+      <StatNumDiv className='stat-num'>
         {props.statNum}
       </StatNumDiv>
     </IndentedDiv>
