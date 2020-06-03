@@ -7,6 +7,7 @@ npm-debug.log
 node_modules/
 package-lock.json
 babel.config.js
+keys.js
 
 pids
 *.pid
@@ -24,5 +25,3 @@ coverage
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
-bundle.js
-

@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var Sequelize = require('sequelize');
-
+var cors = require('cors');
 var path = require('path');
 var PORT = 4444;
 // import artist model methods
@@ -12,9 +12,9 @@ var db = require('./db/index.js');
 var bodyParser = require('body-parser');
 
 
+app.use(cors());
 // Middleware functionality goes here
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
-app.use(bodyParser());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
